@@ -34,7 +34,7 @@ input {
     width: 200px;
     margin-bottom: 20px;
     border-radius: 4px;
-    background: #adadad;
+    background: white;
     @media (max-width: 1150px){
         width: 50%;
     }

@@ -21,9 +21,10 @@ export default function CreateUser({role, confirmAdmin}) {
     const [ avatar, setAvatar ] = useState("");
     const [ authorUsername, setAuthorUsername ] = useState("");
     const [ location, setLocation ] = useState("");
+    const [ github, setGithub ] = useState(''); 
 
     useEffect(() => {
-        confirmAdmin()
+        confirmAdmin();
     }, [confirmAdmin])
 
     const registerCreator = () => {
@@ -35,6 +36,7 @@ export default function CreateUser({role, confirmAdmin}) {
             linkedin: linkedin,
             instagram: instagram,
             youtube: youtube,
+            github: github,
             other: other,
             bio: bio,
             location: location,
@@ -119,6 +121,13 @@ export default function CreateUser({role, confirmAdmin}) {
                         type="text" 
                         onChange={(event) => {
                             setLinkedin(event.target.value);
+                        }}
+                    />
+                    <label>Github:</label>
+                    <input 
+                        type="text" 
+                        onChange={(event) => {
+                            setGithub(event.target.value);
                         }}
                     />
                     <label>Other:</label>

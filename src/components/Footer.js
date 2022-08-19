@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 // images
 import Twitter from '../images/twitterBlack.png';
 import Linkedin from '../images/linkedinBlack.png';
+import Github from '../images/githubBlack.png';
 import Globe from '../images/globe.png';
 
 export const Footer = () => { 
@@ -18,6 +19,9 @@ export const Footer = () => {
                 </a>
                 <a href="https://www.linkedin.com/in/bill-gibson-868182104/" target="_blank" rel="noreferrer">
                     <img src={Linkedin} alt="" />
+                </a>
+                <a href="https://github.com/GibbyBreaksTech" target="_blank" rel="noreferrer">
+                    <img src={Github} alt="" />
                 </a>
                 <a href="https://billgibson.net" target="_blank" rel="noreferrer">
                     <img src={Globe} alt="" />
