@@ -45,7 +45,7 @@ export default function ProfilePage({ username, role }) {
                 }
             })
             .catch(function (error) {
-                throw error;
+                console.log(error);
             });
         }
         handleJoinDate();
