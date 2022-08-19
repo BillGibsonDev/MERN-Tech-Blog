@@ -25,6 +25,7 @@ import Insta from '../../images/instaBlack.png';
 import Globe from '../../images/globe.png';
 import Youtube from '../../images/youtube.png';
 import Dot from "../../images/dot.png";
+import Github from '../../images/githubBlack.png';
 
 export default function CreatorPage ({username}) {
 
@@ -99,6 +100,11 @@ export default function CreatorPage ({username}) {
                                                     creator.instagram === "" 
                                                     ? <></>
                                                     : <a href={creator.instagram} target="_blank" rel="noreferrer"><img src={Insta} alt="" /></a>
+                                                }
+                                                {
+                                                    creator.github === "" 
+                                                    ? <></>
+                                                    : <a href={creator.github} target="_blank" rel="noreferrer"><img src={Github} alt="" /></a>
                                                 }
                                                 {
                                                     creator.other === "" 

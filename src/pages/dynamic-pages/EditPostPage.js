@@ -41,8 +41,6 @@ export default function EditPostPage({username, role, confirmRole}) {
     const [ postDate, setPostDate ] = useState(article.postTitle);
     const [ thumbnail, setThumbnail ] = useState(article.postTitle);
     const [ postIntro, setPostIntro ] = useState(article.postTitle);
-    const [conclusion, setConclusion] = useState(article.postTitle);
-    const [conclusionTitle, setConclusionTitle] = useState(article.postTitle);
     const [ author, setAuthor ] = useState(article.author);
     const [inputFields, setInputFields] = useState([]);
 
@@ -56,14 +54,7 @@ export default function EditPostPage({username, role, confirmRole}) {
             postDate: postDate,
             thumbnail: thumbnail,
             postIntro: postIntro,
-
-            // sections
             sections: inputFields,
-    
-            // conclusion 
-            conclusion: conclusion,
-            conclusionTitle: conclusionTitle,
-
         })
         .then(function(response){
             if(response.data === "Post Updated"){
@@ -106,7 +97,6 @@ export default function EditPostPage({username, role, confirmRole}) {
     }
     setInputFields(values);
   };
-
 
     const deletePost = () => {
         const result = window.confirm("Are you sure you want to delete?");
@@ -244,33 +234,9 @@ export default function EditPostPage({username, role, confirmRole}) {
                                 )
                             })
                         }
-                <div id="conclusion">
-                    <div className="info-container">
-                        <div className="input-container">
-                            <label htmlFor="">Conclusion Title:
-                                <input
-                                    id='conclusionTitle'
-                                    defaultValue={article.conclusionTitle}
-                                    onChange={(event) =>{
-                                        setConclusionTitle(event.target.value);
-                                    }}
-                                />
-                            </label>
-                        </div>
-                    </div>
-                    <label className="paragraph-textarea" >Conclusion:
-                        <textarea
-                            id='conclusion'
-                            defaultValue={article.conclusion}
-                            onChange={(event) =>{
-                                setConclusion(event.target.value);
-                            }}
-                        />
-                    </label>
-                </div>
                 <div className="bottom-button-container">
-                    <StyledButton onClick={handleUpdate}>Update</StyledButton>
-                    <StyledButton id="delete" onClick={deletePost}>Delete</StyledButton>
+                    <StyledButton onClick={() => { handleUpdate() }}>Update</StyledButton>
+                    <StyledButton id="delete" onClick={() => { deletePost() }}>Delete</StyledButton>
                 </div>
             </div>
             }
@@ -341,7 +307,7 @@ const StyledEditPage = styled.div`
                     }
                 }
             }
-            #intro, #conclusion {
+            #intro {
                 flex-direction: row;
                 .info-container {
                     flex-direction: column;

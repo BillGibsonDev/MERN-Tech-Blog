@@ -19,7 +19,7 @@ export default function CreatePostPage({username, confirmRole}) {
     const [ postDate, setPostDate ] = useState(0);
     const [ thumbnail, setThumbnail ] = useState('');
     const [ postIntro, setPostIntro ] = useState('');
-    const [ author ] = useState(username);
+    const [ author, setAuthor ] = useState('');
 
     const [inputFields, setInputFields] = useState([
         { 
@@ -33,6 +33,7 @@ export default function CreatePostPage({username, confirmRole}) {
     const handleSubmit = () => {
         axios.post(`${process.env.REACT_APP_ADD_POST_URL}`, {
             author: author,
+            authorUsername: username,
             postTitle: postTitle,
             linkTitle: linkTitle,
             postDate: postDate,
@@ -87,6 +88,15 @@ export default function CreatePostPage({username, confirmRole}) {
                 <section id="intro">
                     <div className="info-container">
                         <div className="input-container">
+                            <label>Author:
+                                <input
+                                    type="text"
+                                    id="author"
+                                    onChange={(event) => {
+                                        setAuthor(event.target.value);
+                                    }}
+                                />
+                            </label>
                             <label>Post Title:
                                 <input
                                     type="text"

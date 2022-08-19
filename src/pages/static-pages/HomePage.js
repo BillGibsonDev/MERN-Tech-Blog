@@ -21,7 +21,7 @@ export default function HomePage ({ username }) {
     useEffect(() => {
         window.scrollTo(0, 0);
         dispatch(getPosts());
-        setNumber(articles.length)
+        setNumber(articles.length);
     }, [dispatch, articles.length])
 
     const [ value, setValue ] = useState(10);
@@ -48,8 +48,6 @@ export default function HomePage ({ username }) {
                                     date={article.postDate}
                                     linkTitle={article.linkTitle}
                                     thumbnail={article.thumbnail}
-                                    comments={article.comments.length}
-                                    likes={article.likes}
                                     tag={article.tag}
                                     authorUsername={article.authorUsername}
                                     key={key}

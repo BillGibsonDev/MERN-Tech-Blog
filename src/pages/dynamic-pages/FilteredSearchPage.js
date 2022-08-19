@@ -57,8 +57,6 @@ export default function FilteredSearchPage ({ username }) {
                                             date={article.postDate}
                                             linkTitle={article.linkTitle}
                                             thumbnail={article.thumbnail}
-                                            comments={article.comments.length}
-                                            likes={article.likes}
                                             tag={article.tag}
                                             authorUsername={article.authorUsername}
                                             key={key}
@@ -100,7 +98,7 @@ const StyledFilterPage = styled.div`
         justify-content: center;
         align-items: center;
         margin: auto;
-        color: #f3f3f3;
+        color: #fff;
         span {
             margin-left: 3px;
         }
@@ -117,50 +115,50 @@ const StyledFilterPage = styled.div`
         }
     }
     .blog {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    margin: 1em auto;
-    .blog-wrapper {
         display: flex;
-        flex-direction: column;
         width: 100%;
-        min-height: 100%;
-        margin: 0 auto;
-        border-radius: 12px;
-        .placeholder {
+        height: 100%;
+        margin: 1em auto;
+        .blog-wrapper {
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 40vh;
-            h2 {
-                color: white;
-                text-align: center;
-            }
-        }
-        .loadingContainer{
-            display: flex;
             width: 100%;
-            height: 50vh;
-            justify-content: center;
-            align-items: center;
-            .loader {
-                border: 16px solid #f3f3f3;
-                border-top: 16px solid #000000;
-                border-radius: 50%;
-                width: 250px;
-                height: 250px;
-                animation: spin 2s linear infinite;
-                img {
-                    width: 120px;
+            min-height: 100%;
+            margin: 0 auto;
+            border-radius: 12px;
+            .placeholder {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                min-height: 40vh;
+                h2 {
+                    color: white;
+                    text-align: center;
+                }
+            }
+            .loadingContainer{
+                display: flex;
+                width: 100%;
+                height: 50vh;
+                justify-content: center;
+                align-items: center;
+                .loader {
+                    border: 16px solid #f3f3f3;
+                    border-top: 16px solid #000000;
+                    border-radius: 50%;
+                    width: 250px;
+                    height: 250px;
+                    animation: spin 2s linear infinite;
+                    img {
+                        width: 120px;
+                    }
                 }
             }
         }
-    }
         @keyframes spin {
             0%  { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-}
+    }
 `;

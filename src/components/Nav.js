@@ -20,18 +20,14 @@ export const Nav = ({role, isLoggedIn, logout}) => {
 
     return (
         <StyledNav>
-            <img className="logo"  alt="" />
+            <Link to="/" id="logo">Tech Blog</Link>
             {
                 !isLoggedIn
-                ? <nav>
-                    <Link to="/">Home</Link>
-                    <Link to="/SignUpPage">Sign Up</Link>
-                    <Link to="/LoginPage">Log In</Link>
-                </nav>
+                ? <></>
                 : <nav>
                     <Link to="/">Home</Link>
                     <Link to="/ProfilePage">Profile</Link>
-                    <Link to="/" onClick={logout}>Sign Out</Link>
+                    <Link to="/" onClick={() => { logout() }}>Sign Out</Link>
                 </nav>
             }
             <div id="myNav" className="overlay">
@@ -40,8 +36,6 @@ export const Nav = ({role, isLoggedIn, logout}) => {
                     !isLoggedIn
                     ? <div className="overlayContent" onClick={() => { closeNav() }}>
                         <Link to="/" onClick={() => { closeNav() }}>Home</Link>
-                        <Link to="/SignUpPage" onClick={() => { closeNav() }}>Sign Up</Link>
-                        <Link to="/LoginPage" onClick={() => { closeNav() }}>Log In</Link>
                     </div>
                     : <div className="overlayContent" onClick={() => { closeNav() }}>
                         <Link to="/" onClick={() => { closeNav() }}>Home</Link>
@@ -68,9 +62,9 @@ const StyledNav = styled.div`
     @media (max-width: 750px){
         width: 95%;
     }
-    .logo {
-        width: 200px;
-        height: 35px;
+    #logo {
+        font-size: 32px;
+        color: white;
     }
     nav {
         display: flex;

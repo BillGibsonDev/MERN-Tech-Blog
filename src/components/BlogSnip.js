@@ -8,19 +8,12 @@ import * as pallette from '../Styled/ThemeVariables.js';
 // router
 import { Link } from 'react-router-dom';
 
-// images
-import Heart from '../images/heartTrans.png';
-import HeartBlue from '../images/heartBlue.png';
-import CommentImage from '../images/comment.png';
-
 export default function BlogSnip({
     id, 
     title, 
     thumbnail, 
     linkTitle,
     date,
-    comments,
-    likes,
     user,
     author,
     tag,
@@ -69,15 +62,7 @@ export default function BlogSnip({
                             }
                             <Link to={`/creators/${authorUsername}`}>{author}</Link>
                         </div>
-                        <h5>{splitDate}</h5>
-                    </div>
-                    <div className="interaction-container">
-                        {
-                            likes.some(user => user.username === username)
-                            ? <span id="blue"><img src={HeartBlue} alt="" />{likes.length}</span>
-                            : <span><img src={Heart} alt="" />{likes.length}</span>
-                        }
-                        <span><img src={CommentImage} alt="" /> {comments}</span>
+                        <h5 id="date">{splitDate}</h5>
                     </div>
                 </div>
             </div>
@@ -136,7 +121,7 @@ const StyledSnip = styled.div`
             }
             #title {
                 color: white;
-                font-size: 20px;
+                font-size: 28px;
                 margin: 6px 0;
                  @media (max-width: 750px){
                     margin: 3px 0;
@@ -164,36 +149,17 @@ const StyledSnip = styled.div`
                         margin-right: 4px;
                     }
                     a {
-                        font-size: 14px;
+                        font-size: 18px;
                         color: ${pallette.helperGrey};
                         &:hover {
                             text-decoration: underline;
                         }
                     }
                 }
-                #author, h5 {
+                #date {
                     font-weight: 400;
                     color: ${pallette.helperGrey};
-                    font-size: 12px;
-                }
-            }
-            .interaction-container {
-                display: flex;
-                align-items: center;
-                width: 98%;
-                margin: auto;
-                @media (max-width: 750px){
-                    width: 100%;
-                }
-                span {
-                    display: flex;
-                    align-items: center;
-                    margin-right: 16px;
-                    color: #ffffff;
-                    img {
-                        width: 20px;
-                        margin-right: 6px;
-                    }
+                    font-size: 14px;
                 }
             }
         }

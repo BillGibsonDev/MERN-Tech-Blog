@@ -31,34 +31,35 @@ export default function Filter() {
 }
 
 const StyledFilter = styled.div`
-display: flex;
-width: 60%;
-align-items: center;
-justify-content: space-between;
-margin-top: 20px;
-    @media(max-width: 1250px){
-      width: 90%;
-    }
-    @media(max-width: 700px){
-      width: 95%;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    a {
-      color: ${pallette.helperGrey};
-      font-size: 20px;
-      &:hover {
-        text-decoration: underline;
-        text-underline-position: under;
-      }
-      @media(max-width: 700px){
-        margin: 0 10px;
-      }
-    }
-    .active {
-      font-weight: 700;
-      color: white;
+  display: flex;
+  width: 60%;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  @media(max-width: 1250px){
+    width: 90%;
+  }
+  @media(max-width: 700px){
+    width: 95%;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  a {
+    color: ${pallette.helperGrey};
+    font-size: 20px;
+    &:hover {
       text-decoration: underline;
       text-underline-position: under;
+      color: white;
     }
+    @media(max-width: 700px){
+      margin: 0 10px;
+    }
+  }
+  .active {
+    font-weight: 700;
+    color: white;
+    text-decoration: underline;
+    text-underline-position: under;
+  }
 `;

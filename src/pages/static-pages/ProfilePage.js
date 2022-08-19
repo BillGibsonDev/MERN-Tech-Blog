@@ -9,20 +9,18 @@ import styled from 'styled-components';
 import * as pallette from '../../Styled/ThemeVariables.js';
 
 // router
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // redux
 import { useDispatch } from 'react-redux';
 import { getPosts } from '../../redux/actions/posts';
 import { useSelector } from 'react-redux';
-import { StyledButton } from '../../Styled/Styled';
 
 export default function ProfilePage({ username, role }) {
 
     const [ isLoading, setLoading ] = useState(true);
     const [ joinDate, setJoinDate ] = useState("");
 
-    const navigate = useNavigate();
     const dispatch = useDispatch();
     
     let tokenPW = sessionStorage.getItem("tokenPW");
@@ -56,43 +54,15 @@ export default function ProfilePage({ username, role }) {
 
     const articles = useSelector((state) => state.posts);
 
-    const handleDelete = () => {
-        const result = window.confirm("Are you sure you want to delete?");
-        if(result === true){
-            setLoading(true);
-            axios.delete(`${process.env.REACT_APP_DELETE_ACCOUNT_URL}`, {
-                username: tokenUser,
-                password: tokenPW,
-            })
-            .then(function(response){
-                if(response.data !== "Account Deleted"){
-                    setLoading(false);
-                    alert("Server Error - Post not updated")
-                } else {
-                    setLoading(false);
-                    navigate("/");
-                    alert('Account Deleted');
-                }
-            })
-        }
-    }
-
     return (
         <StyledProfilePage>
             <h1>Profile</h1>
-            {
-                username === "" 
-                ? <h1>You are signed out</h1>
-                : <>
-                    <header>
-                        <div className="user-container">
-                            <h2><span>Username: </span>{username}</h2>
-                            <h2><span>Joined: </span>{joinDate}</h2>
-                        </div>
-                        <StyledButton id="delete" onClick={() => {handleDelete() }}>Delete Account</StyledButton>
-                    </header>
-                </>
-            }
+            <header>
+                <div className="user-container">
+                    <h2><span>Username: </span>{username}</h2>
+                    <h2><span>Joined: </span>{joinDate}</h2>
+                </div>
+            </header>
             {
                 role === process.env.REACT_APP_ADMIN_SECRET || role === process.env.REACT_APP_CREATOR_SECRET 
                 ? <div className="creator-dashboard">
@@ -176,13 +146,6 @@ const StyledProfilePage = styled.div`
                 span {
                     color: ${pallette.helperGrey};
                 }
-            }
-        }
-        #delete {
-            margin-top: 50px;
-            background: #fc5252;
-            &:hover {
-                background: red;
             }
         }
     }

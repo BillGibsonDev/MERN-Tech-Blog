@@ -5,9 +5,6 @@ import axios from 'axios';
 import styled from 'styled-components';
 import * as pallette from '../../Styled/ThemeVariables.js';
 
-// components
-import CommentSection from "../../components/CommentSection";
-
 // loaders
 import Loader from '../../loaders/Loader';
 
@@ -17,16 +14,13 @@ import { useParams } from 'react-router';
 
 //images
 import Edit from '../../images/editIconWhite.png';
-import HeartBlue from '../../images/heartBlue.png';
-import HeartBlack from "../../images/heartTrans.png";
 
-export default function BlogArticle({ role, username, isLoggedIn }) {
+export default function BlogArticle({ role, username }) {
 
     const { id } = useParams();
     
     const [ postId, setPostId ] = useState(id);
     const [ creator, setCreator ] = useState([]);
-    const [ hasLiked, setHasLiked ] = useState(false);
     const [ article, setArticle ] = useState([]);
     const [ authorUsername, setAuthorUsername ] = useState('');
     const [ isLoading, setLoading ] = useState(true);
@@ -43,24 +37,8 @@ export default function BlogArticle({ role, username, isLoggedIn }) {
                 setLoading(false);
             })
         }
-        const handleHasLiked = () => {
-            if ( username === ""){
-            } else {
-                axios.post(`${process.env.REACT_APP_FIND_LIKE_URL}/${postId}`, {
-                    username: username,
-                    postId: postId,
-                })
-                .then(function(response){
-                    if(response.data === "Liked!"){
-                        setHasLiked(true);
-                }})
-                .catch(function (error) {
-                    console.log(error);
-                });
-            }}
-            getPosts();
-            handleHasLiked();
-    }, [ id, username, postId, hasLiked]);
+        getPosts();
+    }, [ id, username, postId ]);
 
     useEffect(() => {
         const handleCreator = () => {
@@ -82,41 +60,6 @@ export default function BlogArticle({ role, username, isLoggedIn }) {
         handleCreator();
     }, [ authorUsername, article ]);
 
-    const handleAddLike = () => {
-		axios.post(`${process.env.REACT_APP_LIKE_POST_URL}/${postId}`, {
-			username: username,
-            postId: postId,
-		})
-        .then(function(response){
-            if(response.data === "Like added!"){
-                setHasLiked(true);
-            }
-        })
-        .catch(function (error) {
-		    console.log(error);
-		});
-    }
-
-    const handleRemoveLike = () => {
-		axios.post(`${process.env.REACT_APP_REMOVE_LIKE_URL}/${id}`, {
-			username: username,
-            postId: id,
-		})
-        .then(function(response){
-            if(response.data === "Like removed!"){
-                setHasLiked(false);
-            }
-        })
-        .catch(function (error) {
-		    console.log(error);
-		});
-    }
-
-    const handleLoggedIn = () => {
-        alert("You need account to like! Please sign up or log in.")
-    }
-
-
     return (
         <StyledArticle>
             { 
@@ -133,13 +76,6 @@ export default function BlogArticle({ role, username, isLoggedIn }) {
                                         role === process.env.REACT_APP_ADMIN_SECRET || username === article.authorUsername 
                                         ? <Link to={`/EditPostPage/${postId}`}><img id="edit" src={Edit} alt="" /></Link>
                                         : <></>
-                                    }
-                                    {
-                                        !isLoggedIn
-                                        ? <img  onClick={() => { handleLoggedIn() }} src={HeartBlack} alt='' />
-                                        : article.likes.some(user => user.username === username)
-                                        ? <img  onClick={() => { handleRemoveLike() }} src={HeartBlue} alt='' />
-                                        : <img onClick={() => { handleAddLike() }} src={HeartBlack} alt='' />
                                     }
                                 </div> 
                             </div>
@@ -205,13 +141,6 @@ export default function BlogArticle({ role, username, isLoggedIn }) {
                                 </div>
                             </footer>
                         }
-                        <CommentSection
-                            id="comment-section"
-                            username={username}
-                            role={role}
-                            isLoggedIn={isLoggedIn}
-                            postId={id}
-                        />
                     </div>
                 </>
             }
@@ -259,14 +188,11 @@ const StyledArticle = styled.div`
                     width: 100%;
                     margin-bottom: 20px; 
                 }
-                img {
-                    width: 25px;
-                }
                 a {
                     display: flex;
                     align-items: center;
                     font-size: 18px;
-                    color: #ffffff;
+                    color: ${pallette.helperGrey};
                     #edit {
                         width: 25px;
                         margin-right: 20px;
