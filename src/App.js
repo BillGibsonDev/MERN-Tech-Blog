@@ -93,7 +93,7 @@ function App() {
 			}
 		})
 		.catch(function (error) {
-			alert("Wrong Username or Password")
+			alert("Wrong Username or Password");
 			console.log(error);
 			setLoading(false);
 		});

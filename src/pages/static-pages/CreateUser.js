@@ -43,7 +43,7 @@ export default function CreateUser() {
 			} else if (email !== confirmEmail ) {
 				alert("Emails don't match");
 			} else {
-				axios.post(`${process.env.REACT_APP_REGISER_URL}`, {
+				axios.post(`${process.env.REACT_APP_REGISTER_URL}`, {
 					username: username,
 					password: password,
 					email: email,
