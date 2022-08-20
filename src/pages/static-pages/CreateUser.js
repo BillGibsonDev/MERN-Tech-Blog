@@ -41,7 +41,7 @@ export default function CreateUser() {
 			if (password !== confirmPassword ) {
 				alert("Passwords don't match");
 			} else if (email !== confirmEmail ) {
-				alert("Emails don't match")
+				alert("Emails don't match");
 			} else {
 				axios.post(`${process.env.REACT_APP_REGISER_URL}`, {
 					username: username,
@@ -53,6 +53,7 @@ export default function CreateUser() {
 				.then(function(response) {
 					if(response.data !== "USER REGISTERED"){
 						alert("Server Error - User was not created")
+						console.log(response.data);
 					} else {
 						alert('User Created!');
 					}
