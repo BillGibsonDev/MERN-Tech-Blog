@@ -5,7 +5,8 @@ export default function About () {
     return (
         <StyledAbout >
             <div className="about-wrapper">
-                <h1>About Us</h1>
+                <h1>About Tech Blog</h1>
+                <p>Tech Blog is dedicated giving creators a place to create content for programming technologies.</p>
             </div>
         </StyledAbout >
     )
