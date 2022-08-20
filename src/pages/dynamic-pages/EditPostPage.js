@@ -4,6 +4,7 @@ import axios from 'axios';
 // styled
 import styled from 'styled-components';
 import { StyledButton } from '../../Styled/Styled';
+
 // router
 import  { useParams } from 'react-router-dom';
 
@@ -121,61 +122,61 @@ export default function EditPostPage() {
             {
                 isLoading
                 ? <h1>Loading</h1>
-                : <div className="formWrapper">
+                : <div className="form-wrapper">
                     <div id="intro">
-                    <div className="info-container">
-                        <div className="input-container">
-                            <label>Post Title:
-                                <input
-                                    type="text"
-                                    id="title"
-                                    defaultValue={article.postTitle}
-                                    onChange={(event) => {
-                                        setPostTitle(event.target.value);
-                                    }}
-                                />
-                            </label>
-                            <label>Post Title(Add '-' to Title):
-                                <input
-                                    type="text"
-                                    id="linkTitle"
-                                    defaultValue={article.linkTitle}
-                                    onChange={(event) => {
-                                        setLinkTitle(event.target.value);
-                                    }}
-                                />
-                            </label>
-                            <label>Post Date:
-                                <input 
-                                    type="date" 
-                                    id="date"
-                                    defaultValue={article.postDate}
-                                    onChange={(event) =>{
-                                        setPostDate(event.target.value);
-                                    }}
-                                />
-                            </label>
-                            <label>Post Thumbnail:
-                                <input 
-                                    type="text" 
-                                    id="thumbnail"
-                                    defaultValue={article.thumbnail}
-                                    onChange={(event) =>{
-                                        setThumbnail(event.target.value);
-                                    }}
-                                />
-                            </label>
+                        <div className="info-container">
+                            <div className="input-container">
+                                <label>Post Title:
+                                    <input
+                                        type="text"
+                                        id="title"
+                                        defaultValue={article.postTitle}
+                                        onChange={(event) => {
+                                            setPostTitle(event.target.value);
+                                        }}
+                                    />
+                                </label>
+                                <label>Post Title(Add '-' to Title):
+                                    <input
+                                        type="text"
+                                        id="linkTitle"
+                                        defaultValue={article.linkTitle}
+                                        onChange={(event) => {
+                                            setLinkTitle(event.target.value);
+                                        }}
+                                    />
+                                </label>
+                                <label>Post Date:
+                                    <input 
+                                        type="date" 
+                                        id="date"
+                                        defaultValue={article.postDate}
+                                        onChange={(event) =>{
+                                            setPostDate(event.target.value);
+                                        }}
+                                    />
+                                </label>
+                                <label>Post Thumbnail:
+                                    <input 
+                                        type="text" 
+                                        id="thumbnail"
+                                        defaultValue={article.thumbnail}
+                                        onChange={(event) =>{
+                                            setThumbnail(event.target.value);
+                                        }}
+                                    />
+                                </label>
+                            </div>
                         </div>
-                    </div>
-                    <label className="paragraph-textarea">Intro Paragraph:
-                        <textarea
-                            id='intro'
-                            defaultValue={article.postIntro}
-                            onChange={(event) =>{
-                                setPostIntro(event.target.value);
-                            }}
-                        />
-                    </label>
+                        <label className="paragraph-textarea">Intro Paragraph:
+                            <textarea
+                                id='intro'
+                                defaultValue={article.postIntro}
+                                onChange={(event) =>{
+                                    setPostIntro(event.target.value);
+                                }}
+                            />
+                        </label>
                     </div>
                     { 
                         inputFields.map((section, index) => {
@@ -256,14 +257,14 @@ const StyledEditPage = styled.div`
         font-size: 3em;
         margin: 1em 0;
     }
-    .formWrapper {
+    .form-wrapper {
         display: flex;
         flex-direction: column;
         background: lightgray;
         width: 100%;
         align-items: center;
         border-radius: 12px;
-        #paragraph-section, #intro, #conclusion {
+        #paragraph-section, #intro {
             border-bottom: 2px white solid;
             width: 95%;
             justify-content: space-between;
@@ -274,24 +275,13 @@ const StyledEditPage = styled.div`
                 display: flex;
                 position: relative;
                 width: 100%;
+                @media (max-width: 750px){
+                    flex-direction: column;
+                }
                 .input-container {
                     width: 100%;
                     display: flex;
                     flex-direction: column;
-                    input, button, textarea {
-                        width: 300px;
-                        height: 30px;
-                        }
-                        label {
-                            display: flex;
-                            flex-direction: column;
-                            font-size: 1.5em;
-                            margin: 10px;
-                            textarea {
-                                width: 400px;
-                                height: 200px;
-                            }
-                        }
                     }
                 }
                 label {
@@ -301,14 +291,23 @@ const StyledEditPage = styled.div`
                     margin: 10px;
                     height: 100%;
                     width: 50%;
+                    @media (max-width: 450px){
+                        width: 90%;
+                    }
                     textarea {
                         width: 400px;
                         height: 200px;
+                        @media (max-width: 450px){
+                            width: 90%;
+                        }
                     }
                 }
             }
             #intro {
                 flex-direction: row;
+                @media (max-width: 750px){
+                    flex-direction: column;
+                }
                 .info-container {
                     flex-direction: column;
                 }
@@ -318,8 +317,11 @@ const StyledEditPage = styled.div`
                 width: 100%;
                 justify-content: space-between;
                 margin-bottom: 10px;
+                button {
+                    margin: 0;
+                }
                 #delete {
-                background: #da4040;
+                    background: #da4040;
                     &:hover {
                     background: red;
                 }

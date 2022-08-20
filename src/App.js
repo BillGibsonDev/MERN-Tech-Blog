@@ -22,6 +22,7 @@ import CreatorPage from './pages/dynamic-pages/CreatorPage';
 import ArticlePage from "./pages/dynamic-pages/ArticlePage.js";
 import EditPostPage from "./pages/dynamic-pages/EditPostPage";
 import FilteredSearchPage from './pages/dynamic-pages/FilteredSearchPage';
+import EditCreator from "./pages/dynamic-pages/EditCreator.js";
 
 // components
 import { Nav } from "./components/Nav";
@@ -221,6 +222,12 @@ function App() {
 					path="/articles/:tag" exact
 					element={
 						<FilteredSearchPage isLoggedIn={isLoggedIn} />
+					}
+				/>
+				<Route 
+					path="/edit-creator/:authorUsername" exact
+					element={
+						<EditCreator />
 					}
 				/>
 			</Routes>

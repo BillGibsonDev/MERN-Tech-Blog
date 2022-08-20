@@ -70,6 +70,7 @@ export default function ProfilePage() {
                     <h3>Creator Dashboard</h3>
                     <div className="link-container">
                         <Link to="/CreatePostPage">Create Post</Link>
+                        <Link to={`/edit-creator/${user.user}`}>Edit Creator</Link>
                         {
                             user.role === process.env.REACT_APP_ADMIN_SECRET 
                             ?  <>
@@ -120,7 +121,7 @@ const StyledProfilePage = styled.div`
         margin: 20px auto;
         display: flex;
         justify-content: center;
-        width: 50%;
+        width: 90%;
         border-bottom: 2px #ffffff solid;
     }
     header {
@@ -132,17 +133,18 @@ const StyledProfilePage = styled.div`
         .user-container {
             display: flex;
             justify-content: space-around;
-            align-items: center;
-            width: 100%;
-            @media (max-width: 1150px){
+            width: 90%;
+            min-height: 200px;
+            @media (max-width: 750px){
                 flex-direction: column;
+                justify-content: left;
             }
             h2 {
                 margin: 20px 0;
                 color: white;
+                font-size: 24px;
                 @media (max-width: 1150px){
                     margin: 10px 0;
-                    font-size: 2em;
                 }
                 span {
                     color: ${pallette.helperGrey};
@@ -154,19 +156,23 @@ const StyledProfilePage = styled.div`
         display: flex;
         flex-direction: column;
         width: 90%;
-        margin-top: 3em;
+        margin-top: 20px;
+        min-height: 400px;
         h3 {
             color: white;
             border-bottom: 2px solid white;
         }
         .link-container {
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            row-gap: 20px;
             justify-content: space-between;
             width: 100%;
-            margin: 6px 0 10px 0;
+            margin: 6px 0 auto 0;
             a {
-                font-size: 2em;
+                font-size: 24px;
                 color: ${pallette.helperGrey};
+                transition: 0.2s;
                 &:hover {
                     color: black;
                 }
@@ -185,6 +191,9 @@ const StyledProfilePage = styled.div`
             display: grid;
             grid-template-columns: 1fr 1fr;
             width: 100%;
+            @media (max-width: 750px){
+                grid-template-columns: 1fr;
+            }
             .article-container {
                 display: flex;
                 align-items: center;

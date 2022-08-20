@@ -42,7 +42,7 @@ export default function CreatorPage () {
             axios.get(`${process.env.REACT_APP_GET_CREATOR_URL}/${authorUsername}`)
             .then(function(response){
                 setLoading(false);
-                setCreator(response.data);
+                setCreator(response.data[0]);
             })
             .catch(function (error) {
                 setLoading(false);
@@ -63,58 +63,51 @@ export default function CreatorPage () {
                 loading 
                 ? <Loader />
                 : <section>
-                    {
-                        creator.map((creator, key) => {
-                            return (
-                                <header key={key}>
-                                    <div className="header-wrapper">
-                                        <img id="avatar" src={creator.avatar} alt="" />
-                                        <h4>{creator.creator}</h4>
-                                        <p>{creator.bio}</p>
-                                        <div className="info-container">
-                                            <h6>{creator.location}</h6>
-                                            <img id="dot" src={Dot} alt="" />
-                                            <h6>{articles.length} Posts</h6>
-                                            <img id="dot" src={Dot} alt="" />
-                                            <div className="socials-container">
-                                                {
-                                                    creator.twitter === "" 
-                                                    ? <></>
-                                                    : <a href={creator.twitter} target="_blank" rel="noreferrer"><img src={Twitter} alt="" /></a>  
-                                                }
-                                                {
-                                                    creator.youtube === "" 
-                                                    ? <></>
-                                                    :<a href={creator.youtube} target="_blank" rel="noreferrer"><img src={Youtube} alt="" /></a>
-                                                }
-                                                {
-                                                    creator.linkedin === "" 
-                                                    ? <></>
-                                                    : <a href={creator.linkedin} target="_blank" rel="noreferrer"><img src={Linkedin} alt="" /></a>
-                                                }
-                                                {
-                                                    creator.instagram === "" 
-                                                    ? <></>
-                                                    : <a href={creator.instagram} target="_blank" rel="noreferrer"><img src={Insta} alt="" /></a>
-                                                }
-                                                {
-                                                    creator.github === "" 
-                                                    ? <></>
-                                                    : <a href={creator.github} target="_blank" rel="noreferrer"><img src={Github} alt="" /></a>
-                                                }
-                                                {
-                                                    creator.other === "" 
-                                                    ? <></>
-                                                    : <a href={creator.other} target="_blank" rel="noreferrer"><img src={Globe} alt="" /></a>
-                                                }
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </header>
-                            )
-                        })
-                    }
+                    <header>
+                        <div className="header-wrapper">
+                            <img id="avatar" src={creator.avatar} alt="" />
+                            <h4>{creator.creator}</h4>
+                            <p>{creator.bio}</p>
+                            <div className="info-container">
+                                <h6>{creator.location}</h6>
+                                <img className="dot" src={Dot} alt="" />
+                                <h6>{articles.length} Posts</h6>
+                                <img className="dot" id="dot2" src={Dot} alt="" />
+                                <div className="socials-container">
+                                    {
+                                        creator.twitter === "" 
+                                        ? <></>
+                                        : <a href={creator.twitter} target="_blank" rel="noreferrer"><img src={Twitter} alt="" /></a>  
+                                    }
+                                    {
+                                        creator.youtube === "" 
+                                        ? <></>
+                                        :<a href={creator.youtube} target="_blank" rel="noreferrer"><img src={Youtube} alt="" /></a>
+                                    }
+                                    {
+                                        creator.linkedin === "" 
+                                        ? <></>
+                                        : <a href={creator.linkedin} target="_blank" rel="noreferrer"><img src={Linkedin} alt="" /></a>
+                                    }
+                                    {
+                                        creator.instagram === "" 
+                                        ? <></>
+                                        : <a href={creator.instagram} target="_blank" rel="noreferrer"><img src={Insta} alt="" /></a>
+                                    }
+                                    {
+                                        creator.github === "" 
+                                        ? <></>
+                                        : <a href={creator.github} target="_blank" rel="noreferrer"><img src={Github} alt="" /></a>
+                                    }
+                                    {
+                                        creator.other === "" 
+                                        ? <></>
+                                        : <a href={creator.other} target="_blank" rel="noreferrer"><img src={Globe} alt="" /></a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </header>
                     <div className="blog">
                     <div className="blogWrapper">
                         {
@@ -193,6 +186,7 @@ const StyledCreatorPage = styled.div`
                 justify-content: space-evenly;
                 align-items: center;
                 margin: 10px auto;
+                flex-wrap: wrap;
                 h6 {
                     margin: auto;
                     font-size: 20px;
@@ -200,19 +194,27 @@ const StyledCreatorPage = styled.div`
                         font-size: 14px;
                     }
                 }
-                #dot {
+                .dot {
                     width: 10px;
                     @media (max-width: 750px){
                         width: 6px;
+                    }
+                }
+                #dot2 {
+                    @media (max-width: 450px){
+                        display: none;
                     }
                 }
                 .socials-container {
                     display: flex;
                     justify-content: center;
                     margin: auto;
+                    @media (max-width: 450px){
+                        margin-top: 20px;
+                    }
                     a {
-                        width: 25px;
-                        height: 25px;
+                        width: 35px;
+                        height: 35px;
                         margin: 0 6px;
                         img {
                             height: 100%;

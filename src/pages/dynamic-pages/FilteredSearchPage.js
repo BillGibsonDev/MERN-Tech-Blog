@@ -15,7 +15,7 @@ import { useSelector } from 'react-redux';
 // router
 import { useParams } from 'react-router-dom';
 
-export default function FilteredSearchPage ({ username }) {
+export default function FilteredSearchPage () {
 
     const { tag } = useParams();
 
@@ -27,6 +27,7 @@ export default function FilteredSearchPage ({ username }) {
     }, [dispatch])
 
     const articles = useSelector((state) => state.posts);
+
     const [ value, setValue ] = useState(10);
 
     const handleShowMore = () => {
@@ -51,7 +52,6 @@ export default function FilteredSearchPage ({ username }) {
                                     return(
                                         <BlogSnip
                                             author={article.author}
-                                            username={username}
                                             id={article._id}
                                             title={article.postTitle}
                                             date={article.postDate}
@@ -86,6 +86,9 @@ const StyledFilterPage = styled.div`
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    @media (max-width: 750px){
+        width: 95%;
+    }
     #showmore {
         height: 35px;
         width: 200px;

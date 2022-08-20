@@ -234,7 +234,7 @@ const StyledCreatePage = styled.div`
         width: 100%;
         align-items: center;
         border-radius: 12px;
-        #paragraph-section, #intro, #conclusion {
+        #paragraph-section, #intro {
             border-bottom: 2px white solid;
             width: 95%;
             justify-content: space-between;
@@ -245,40 +245,33 @@ const StyledCreatePage = styled.div`
                 display: flex;
                 position: relative;
                 width: 100%;
+                @media (max-width: 750px){
+                    flex-direction: column;
+                }
                 .input-container {
                     width: 100%;
                     display: flex;
                     flex-direction: column;
-                    input, button, textarea {
-                        width: 300px;
-                        height: 30px;
-                        background: #fff;
-                        padding: 2px;
-                        }
-                        label {
-                            display: flex;
-                            flex-direction: column;
-                            font-size: 20px;
-                            margin: 10px;
-                            textarea {
-                                width: 400px;
-                                height: 200px;
-                            }
-                        }
+                }
+            }
+            label {
+                display: flex;
+                flex-direction: column;
+                font-size: 1.5em;
+                margin: 10px;
+                height: 100%;
+                width: 50%;
+                @media (max-width: 750px){
+                    width: 100%;
+                }
+                textarea {
+                    width: 400px;
+                    height: 200px;
+                    @media (max-width: 450px){
+                        width: 90%;
                     }
                 }
-                label {
-                    display: flex;
-                    flex-direction: column;
-                    font-size: 1.5em;
-                    margin: 10px;
-                    height: 100%;
-                    width: 50%;
-                    textarea {
-                        width: 400px;
-                        height: 200px;
-                    }
-                }
+            }
             .button-container {
                 display: flex;
                 width: 100%;
@@ -297,6 +290,9 @@ const StyledCreatePage = styled.div`
         }
         #intro {
             flex-direction: row;
+            @media (max-width: 750px){
+                flex-direction: column;
+            }
             .info-container {
                 flex-direction: column;
             }

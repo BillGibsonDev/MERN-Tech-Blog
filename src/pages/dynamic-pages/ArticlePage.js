@@ -42,7 +42,7 @@ export default function BlogArticle() {
                     setSplitDate(`${month}-${day}-${year}`);
                     axios.get(`${process.env.REACT_APP_GET_CREATOR_URL}/${response.data.authorUsername}`)
                     .then(function(response){
-                        setCreator(response.data);
+                        setCreator(response.data[0]);
                     })
                     .catch(function (error) {
                         console.log(error);
@@ -76,11 +76,7 @@ export default function BlogArticle() {
                         <img id="thumbnail" src={article.thumbnail} alt="" />
                         <div className="info-container">
                             <div className="author-container">
-                                {
-                                    creator[0] === undefined 
-                                    ? <img src="" alt="" />
-                                    : <img src={creator[0].avatar} alt="" />
-                                }
+                                <img src={creator.avatar} alt="" />
                                 <Link to={`/creators/${article.authorUsername}`}>{article.author}</Link>
                             </div>
                             <h5>{splitDate}</h5>
@@ -118,22 +114,13 @@ export default function BlogArticle() {
                                 )
                             })
                         }
-                        {
-                            creator[0] === undefined 
-                            ? <footer>
-                                <img src="" alt="" />
-                                <div className="author-info-wrapper">
-                                    <Link to={`/creators/${article.authorUsername}`}>{article.author}</Link>
-                                </div>
-                            </footer>
-                            : <footer>
-                                <img src={creator[0].avatar} alt="" />
-                                <div className="author-info-wrapper">
-                                    <Link to={`/creators/${article.authorUsername}`}>{article.author}</Link>
-                                    <p>{creator[0].bio}</p>
-                                </div>
-                            </footer>
-                        }
+                        <div className="bottom-author-container">
+                            <img src={creator.avatar} alt="" />
+                            <div className="author-info-wrapper">
+                                <Link to={`/creators/${article.authorUsername}`}>{article.author}</Link>
+                                <p>{creator.bio}</p>
+                            </div>
+                        </div>
                     </div>
                 </>
             }
@@ -262,14 +249,14 @@ const StyledArticle = styled.div`
             }
             h6 {
                 color: #ffffff;
-                font-size: 2em;
+                font-size: 24px;
                 margin: 10px 0 6px 0;
                 @media (max-width: 750px){
                     font-size: 1.5em;
                 }
             }
         }
-        footer {
+        .bottom-author-container {
             display: flex;
             align-items: center;
             border-top: 2px solid #ffffff;

@@ -155,16 +155,16 @@ export default function CreateCreator() {
 }
 
 const StyledRegister = styled.div`
-display: flex;
-align-items: center;
-justify-content: center;
-flex-direction: column;
-background: white;
-height: 80vh;
-width: 100%;
-max-width: 875px;
-margin: 20px auto;
-border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: white;
+    min-height: 80vh;
+    width: 100%;
+    max-width: 875px;
+    margin: 20px auto;
+    border-radius: 12px;
 	@media (max-width: 1050px){
 		width: 98%;
 	}
@@ -174,37 +174,47 @@ border-radius: 12px;
         margin-bottom: 40px;
     }
 	.form-wrapper {
-            display: flex;
-            width: 50%;
-            align-items: center;
-            justify-content: space-between;
+        display: flex;
+        width: 50%;
+        align-items: center;
+        justify-content: space-between;
+        @media (max-width: 1150px){
+            font-size: 1.2em;
+            width: 70%;
+        }
+        @media (max-width: 850px){
+            flex-direction: column;
+            width: 90%;
+        }
+        label {
+            font-weight: bold;
             @media (max-width: 1150px){
                 font-size: 1.2em;
             }
-            label {
-                font-weight: bold;
-                @media (max-width: 1150px){
-                    font-size: 1.2em;
-                }
-            }
-            input {
-                width: 200px;
-                margin-bottom: 20px;
-                border-radius: 4px;
-                @media (max-width: 1150px){
-                    width: 50%;
-                }
-                @media (max-width: 750px){
-                    width: 70%;
-                }
-				@media (max-width: 550px){
-                    width: 90%;
-                }
-            }
-            .right-container, .left-container {
-                display: flex;
-                flex-direction: column;
-            } 
         }
-
+        input {
+            width: 200px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            @media (max-width: 1150px){
+                width: 50%;
+            }
+            @media (max-width: 750px){
+                width: 70%;
+            }
+            @media (max-width: 550px){
+                width: 90%;
+            }
+        }
+        .right-container, .left-container {
+            display: flex;
+            flex-direction: column;
+            @media (max-width: 850px){
+                width: 100%;
+            }
+        } 
+    }
+    button {
+        margin-bottom: 20px;
+    }
 `;

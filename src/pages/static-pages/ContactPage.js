@@ -8,8 +8,8 @@ export default function Contact () {
     return (
         <StyledContact>
             <div className="contact-wrapper">
-                <h1>Contact us</h1>
-                <h2>Directly contact  with any questions or concerns.</h2>
+                <h1>Contact</h1>
+                <h2>Directly send a message with any questions or concerns.</h2>
                 <ContactForm />
             </div>
         </StyledContact >

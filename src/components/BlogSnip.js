@@ -28,7 +28,7 @@ export default function BlogSnip({
         const handleCreator = () => {
             axios.get(`${process.env.REACT_APP_GET_CREATOR_URL}/${authorUsername}`)
             .then(function(response){
-                setCreator(response.data);
+                setCreator(response.data[0]);
             })
             .catch(function (error) {
                 console.log(error);
@@ -55,11 +55,7 @@ export default function BlogSnip({
                     <Link id="title" to={`/post/${linkTitle}/${id}`}>{title}</Link>
                     <div className="info-container">
                         <div className="author-header">
-                            {
-                                creator[0] === undefined 
-                                ? <img src="" alt="" />
-                                : <img src={creator[0].avatar} alt="" />
-                            }
+                            <img src={creator.avatar} alt="" />
                             <Link to={`/creators/${authorUsername}`}>{author}</Link>
                         </div>
                         <h5 id="date">{splitDate}</h5>
