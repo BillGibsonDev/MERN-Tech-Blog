@@ -7,9 +7,7 @@ const reducer = (posts = [], action) => {
     } 
     case FETCH_POST: {
       let newPosts = [...posts];
-
       const postIndex = newPosts.findIndex(post => (post._id === action.payload._id));
-
       if (postIndex >= 0) {
         newPosts[postIndex] = action.payload;
       } else {
@@ -20,7 +18,6 @@ const reducer = (posts = [], action) => {
     case CREATE: {
       return [...posts, action.payload];
     }
-
     default:
       return posts;
   }

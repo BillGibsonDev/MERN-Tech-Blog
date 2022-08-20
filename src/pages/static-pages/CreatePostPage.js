@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // styled
 import styled from 'styled-components';
-import { StyledButton } from '../../Styled/Styled';
+import { StyledButton } from '../../Styled/StyledButton';
 
 // redux
 import { useSelector } from 'react-redux';

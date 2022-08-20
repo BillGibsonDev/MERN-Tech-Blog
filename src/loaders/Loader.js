@@ -1,4 +1,3 @@
-
 // styled
 import styled from 'styled-components';
 
@@ -39,7 +38,6 @@ const StyledLoader = styled.div`
         margin-top: 50px;
         color: white;
     }
-
     @keyframes spin {
         0%  { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }

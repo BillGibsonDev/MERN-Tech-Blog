@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import * as pallette from '../Styled/ThemeVariables.js';
+import * as pallette from './ThemeVariables.js';
 
 export const StyledButton = styled.button`
     width: 200px;

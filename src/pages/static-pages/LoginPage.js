@@ -1,6 +1,6 @@
 // styled
 import styled from 'styled-components';
-import { StyledButton } from '../../Styled/Styled';
+import { StyledButton } from '../../Styled/StyledButton';
 
 // loader
 import Loader from '../../loaders/Loader';

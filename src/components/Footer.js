@@ -36,7 +36,7 @@ export const Footer = () => {
     )
 }
 
-const StyledFooter = styled.div`
+const StyledFooter = styled.footer`
     margin: 20px auto 50px auto;
     display: flex;
     justify-content: center;

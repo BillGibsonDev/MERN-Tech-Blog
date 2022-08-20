@@ -14,11 +14,9 @@ export default function BlogSnip({
     thumbnail, 
     linkTitle,
     date,
-    user,
     author,
     tag,
-    authorUsername,
-    username
+    authorUsername
 }) {
 
     const [ creator, setCreator ] = useState([]);
@@ -42,7 +40,7 @@ export default function BlogSnip({
             handleDate(date);
         }
         handleCreator();
-    }, [username, authorUsername, id, user, date])
+    }, [ authorUsername, id, date])
 
     return (
         <StyledSnip id={id}>

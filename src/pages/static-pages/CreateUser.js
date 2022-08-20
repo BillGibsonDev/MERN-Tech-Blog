@@ -7,7 +7,7 @@ import { useConfirmAdmin } from '../../functions/ConfirmAdmin';
 
 // styled
 import styled from 'styled-components';
-import { StyledButton } from '../../Styled/Styled';
+import { StyledButton } from '../../Styled/StyledButton';
 import * as pallette from '../../Styled/ThemeVariables.js';
 
 // redux

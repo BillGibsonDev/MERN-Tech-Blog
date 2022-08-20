@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 // images
 import Hamburger from '../images/hamburgerWhite2.png';
 
-export const Nav = ({role, isLoggedIn, logout}) => {
+export const Nav = ({isLoggedIn, logout}) => {
 
     const openNav = () => {
         document.getElementById("myNav").style.width = "100%";

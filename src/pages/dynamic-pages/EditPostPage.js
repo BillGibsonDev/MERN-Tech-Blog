@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // styled
 import styled from 'styled-components';
-import { StyledButton } from '../../Styled/Styled';
+import { StyledButton } from '../../Styled/StyledButton';
 
 // router
 import  { useParams } from 'react-router-dom';
@@ -48,7 +48,6 @@ export default function EditPostPage() {
 
     const handleUpdate = () => {
         axios.post(`${process.env.REACT_APP_UPDATE_POST_URL}/${postId}`, {
-            // post heading
             postId: postId,
             author: author,
             postTitle: postTitle,
