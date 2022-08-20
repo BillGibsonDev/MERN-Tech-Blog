@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 
 // styled
@@ -8,8 +8,16 @@ import * as pallette from '../../Styled/ThemeVariables.js';
 
 // functions
 import { unauthorized } from '../../functions/Unauthorized';
+import { useConfirmAdmin } from '../../functions/ConfirmAdmin';
 
-export default function CreateUser({role, confirmAdmin}) {
+// redux
+import { useSelector } from 'react-redux';
+
+export default function CreateCreator() {
+
+    const user = useSelector((state) => state.user);
+
+    const confirm  = useConfirmAdmin(user.role);
 
 	const [ creator, setCreator ] = useState("");
 	const [ twitter, setTwitter] = useState("");
@@ -23,34 +31,32 @@ export default function CreateUser({role, confirmAdmin}) {
     const [ location, setLocation ] = useState("");
     const [ github, setGithub ] = useState(''); 
 
-    useEffect(() => {
-        confirmAdmin();
-    }, [confirmAdmin])
-
     const registerCreator = () => {
-        axios.post(`${process.env.REACT_APP_ADD_CREATOR_URL}`, {
-            creator: creator,
-            authorUsername: authorUsername,
-            avatar: avatar,
-            twitter: twitter,
-            linkedin: linkedin,
-            instagram: instagram,
-            youtube: youtube,
-            github: github,
-            other: other,
-            bio: bio,
-            location: location,
-        })
-        .then(function(response) {
-            if(response.data !== "Creator Registered!"){
-                alert("Server Error - Creator was not created")
-            } else {
-                alert('Creator registered!');
-            }
-        })
-        .catch((error) => {
-            console.log(error)
-        })
+        if(confirm){
+            axios.post(`${process.env.REACT_APP_ADD_CREATOR_URL}`, {
+                creator: creator,
+                authorUsername: authorUsername,
+                avatar: avatar,
+                twitter: twitter,
+                linkedin: linkedin,
+                instagram: instagram,
+                youtube: youtube,
+                github: github,
+                other: other,
+                bio: bio,
+                location: location,
+            })
+            .then(function(response) {
+                if(response.data !== "Creator Registered!"){
+                    alert("Server Error - Creator was not created")
+                } else {
+                    alert('Creator registered!');
+                }
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+        }
     }
 
 	return (
@@ -140,7 +146,7 @@ export default function CreateUser({role, confirmAdmin}) {
                 </div>
             </div>
             {
-                role === process.env.REACT_APP_ADMIN_SECRET 
+                user.role === process.env.REACT_APP_ADMIN_SECRET 
                 ? <StyledButton type="submit" onClick={()=>{registerCreator();}}>Register Creator</StyledButton>
                 : <StyledButton type="submit" onClick={()=>{unauthorized();}}>Register Creator</StyledButton>
             }

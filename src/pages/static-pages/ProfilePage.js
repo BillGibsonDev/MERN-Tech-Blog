@@ -12,22 +12,25 @@ import * as pallette from '../../Styled/ThemeVariables.js';
 import { Link } from 'react-router-dom';
 
 // redux
-import { useDispatch } from 'react-redux';
-import { getPosts } from '../../redux/actions/posts';
 import { useSelector } from 'react-redux';
 
-export default function ProfilePage({ username, role }) {
+// functions
+import { useConfirmRole } from '../../functions/ConfirmRole';
+
+export default function ProfilePage() {
 
     const [ isLoading, setLoading ] = useState(true);
     const [ joinDate, setJoinDate ] = useState("");
 
-    const dispatch = useDispatch();
-    
+    const user = useSelector((state) => state.user);
+    const articles = useSelector((state) => state.posts);
+
     let tokenPW = sessionStorage.getItem("tokenPW");
 	let tokenUser = sessionStorage.getItem("tokenUser");
 
-   useEffect(() => {
-        dispatch(getPosts());
+    const confirm  = useConfirmRole(user.role);
+
+    useEffect(() => {
         const handleJoinDate = () => {
             axios.post(`${process.env.REACT_APP_LOGIN_URL}`, {
                 username: tokenUser,
@@ -49,28 +52,26 @@ export default function ProfilePage({ username, role }) {
             });
         }
         handleJoinDate();
-        setLoading(false)
-    }, [dispatch, role, username, tokenPW, tokenUser])
-
-    const articles = useSelector((state) => state.posts);
+        setLoading(false);
+    }, [ user, tokenPW, tokenUser, confirm ])
 
     return (
         <StyledProfilePage>
             <h1>Profile</h1>
             <header>
                 <div className="user-container">
-                    <h2><span>Username: </span>{username}</h2>
+                    <h2><span>Username: </span>{user.user}</h2>
                     <h2><span>Joined: </span>{joinDate}</h2>
                 </div>
             </header>
             {
-                role === process.env.REACT_APP_ADMIN_SECRET || role === process.env.REACT_APP_CREATOR_SECRET 
+                user.role === process.env.REACT_APP_ADMIN_SECRET || user.role === process.env.REACT_APP_CREATOR_SECRET 
                 ? <div className="creator-dashboard">
                     <h3>Creator Dashboard</h3>
                     <div className="link-container">
                         <Link to="/CreatePostPage">Create Post</Link>
                         {
-                            role === process.env.REACT_APP_ADMIN_SECRET 
+                            user.role === process.env.REACT_APP_ADMIN_SECRET 
                             ?  <>
                                 <Link to="/CreateUser">Create User</Link>
                                 <Link to="/CreateCreator">Create Creator</Link>
@@ -82,11 +83,11 @@ export default function ProfilePage({ username, role }) {
                     {
                         isLoading
                         ? <Loader />
-                        : !isLoading  && articles.filter(articles => articles.authorUsername === `${username}`).length === 0 
+                        : !isLoading  && articles.filter(articles => articles.authorUsername === `${user.user}`).length === 0 
                         ? <p>No Articles Found</p>
                         : <div className="article-wrapper" > 
                             {
-                                articles.filter(articles => articles.authorUsername === `${username}`).map((article, key) => {
+                                articles.filter(articles => articles.authorUsername === `${user.user}`).map((article, key) => {
                                     return (
                                         <div className="article-container" key={key}>
                                             <h5>{article.postDate}</h5>

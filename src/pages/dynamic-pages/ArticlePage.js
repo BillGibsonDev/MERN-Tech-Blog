@@ -15,51 +15,44 @@ import { useParams } from 'react-router';
 //images
 import Edit from '../../images/editIconWhite.png';
 
-export default function BlogArticle({ role, username }) {
+// redux
+import { useSelector } from 'react-redux';
+
+export default function BlogArticle() {
 
     const { id } = useParams();
     
-    const [ postId, setPostId ] = useState(id);
+    const user = useSelector((state) => state.user );
+
+    const [ postId ] = useState(id);
     const [ creator, setCreator ] = useState([]);
     const [ article, setArticle ] = useState([]);
-    const [ authorUsername, setAuthorUsername ] = useState('');
     const [ isLoading, setLoading ] = useState(true);
     const [ splitDate, setSplitDate ] = useState('');
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        setPostId(id);
         const getPosts = () => {
             axios.get(`${process.env.REACT_APP_GET_POST_URL}/${postId}`)
             .then(function(response){
                 setArticle(response.data);
-                setAuthorUsername(response.data.authorUsername);
                 setLoading(false);
+                if(response){
+                    const [ year, month, day ] = response.data.postDate.split('-');
+                    setSplitDate(`${month}-${day}-${year}`);
+                    axios.get(`${process.env.REACT_APP_GET_CREATOR_URL}/${response.data.authorUsername}`)
+                    .then(function(response){
+                        setCreator(response.data);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+                }
             })
         }
         getPosts();
-    }, [ id, username, postId ]);
-
-    useEffect(() => {
-        const handleCreator = () => {
-            axios.get(`${process.env.REACT_APP_GET_CREATOR_URL}/${authorUsername}`)
-            .then(function(response){
-                setCreator(response.data);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-        }
-        const handleDate = () => {
-            const [ year, month, day ] = article.postDate.split('-');
-            setSplitDate(`${month}-${day}-${year}`);
-        }
-        if(article.postDate){
-            handleDate(article.postDate);
-        }
-        handleCreator();
-    }, [ authorUsername, article ]);
-
+    }, [ id, user, postId ]);
+    
     return (
         <StyledArticle>
             { 
@@ -73,7 +66,7 @@ export default function BlogArticle({ role, username }) {
                                 <Link id="tag-link" to={`/articles/${article.tag}`}>#{article.tag}</Link>
                                 <div className="button-container">
                                     {
-                                        role === process.env.REACT_APP_ADMIN_SECRET || username === article.authorUsername 
+                                        user.role === process.env.REACT_APP_ADMIN_SECRET || user.user === article.authorUsername 
                                         ? <Link to={`/EditPostPage/${postId}`}><img id="edit" src={Edit} alt="" /></Link>
                                         : <></>
                                     }
@@ -153,11 +146,10 @@ const StyledArticle = styled.div`
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    margin: 2em auto;
+    margin: 20px auto;
     align-items: center;
     width: 95%;
-    max-width: 875px;
-    border-radius: 14px;
+    max-width: 900px;
     position: relative;
     .article-content {
         position: relative;
@@ -216,7 +208,6 @@ const StyledArticle = styled.div`
             align-items: center;
             justify-content: space-between;
             width: 100%;
-            max-width: 300px;
             margin: 10px 0 30px 0;
             .author-container {
                 display: flex;
@@ -244,7 +235,7 @@ const StyledArticle = styled.div`
         }
         #intro-para {
             color: ${pallette.helperGrey};
-            margin-top: 6px;
+            margin-bottom: 20px;
             font-weight: 400;
             font-size: 20px;
         }

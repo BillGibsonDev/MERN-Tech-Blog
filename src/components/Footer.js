@@ -28,10 +28,9 @@ export const Footer = () => {
                 </a>
             </div>
             <div className="link-container">
+                <Link to="/">Home</Link>
                 <Link to="/About">About</Link>
                 <Link to="/Contact">Contact</Link>
-                <Link to="/Termsofservice">Terms of Service</Link>
-                <Link to="/Policies">Policies</Link>
             </div>
         </StyledFooter>
     )
@@ -54,8 +53,8 @@ const StyledFooter = styled.div`
         display: flex;
         justify-content: space-between;
         width: 100%;
-        max-width: 150px;
-        margin: 20px auto 10px auto; 
+        max-width: 200px;
+        margin: 20px auto 20px auto; 
         a {
             width: 30px;
             height: 30px;
@@ -71,21 +70,18 @@ const StyledFooter = styled.div`
     }
     .link-container {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
         width: 80%;
+        max-width: 400px;
         @media (max-width: 1050px){
-            width: 100%;
             margin-top: 10px;
         }
         a {
             display: flex;
             justify-content: center;
             width: 100%;
-            font-size: 12px;
+            font-size: 14px;
             color: white;
-            @media (max-width: 450px){
-                font-size: 10px
-            }
             &:hover {
                 text-decoration: underline;
             }

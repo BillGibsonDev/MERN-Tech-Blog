@@ -3,21 +3,29 @@ import axios from 'axios';
 
 // functions
 import { unauthorized } from '../../functions/Unauthorized';
+import { useConfirmAdmin } from '../../functions/ConfirmAdmin';
 
 // styled
 import styled from 'styled-components';
 import { StyledButton } from '../../Styled/Styled';
+import * as pallette from '../../Styled/ThemeVariables.js';
 
-export default function CreateUser({role, confirmAdmin}) {
+// redux
+import { useSelector } from 'react-redux';
+
+export default function CreateUser() {
 
 	const [ username, setUsername ] = useState("");
 	const [ password, setPassword ] = useState("");
-	const [ confirm, setConfirm ] = useState("");
+	const [ confirmPassword, setConfirmPassword ] = useState("");
 	const [ userRole, setUserRole ] = useState("");
 	const [ email, setEmail ] = useState("");
 	const [ confirmEmail, setConfirmEmail ] = useState("");
 	const [joinDate, setJoinDate ] = useState("");
 
+	const user = useSelector((state) => state.user );
+
+	const confirm = useConfirmAdmin(user.role);
 
  	useEffect(() => {
 		const handleDate = () => {
@@ -25,31 +33,31 @@ export default function CreateUser({role, confirmAdmin}) {
 			const date = `${current.getMonth()+1}/${current.getDate()}/${current.getFullYear()} @ ${current.getHours()}:${current.getMinutes()}`;
 			setJoinDate(date);
 		}
-		setUserRole(process.env.REACT_APP_GUEST_SECRET);
 		handleDate();
-	}, [role, userRole]);
+	}, []);
 
     const registerUser = () => {
-		if (password !== confirm ) {
-			alert("Passwords don't match");
-		} else if (email !== confirmEmail ) {
-			alert("Emails don't match")
-		} else {
-			
-			axios.post(`${process.env.REACT_APP_REGISER_URL}`, {
-				username: username,
-				password: password,
-				email: email,
-				userRole: `${process.env.REACT_APP_GUEST_SECRET}`,
-				joinDate: joinDate,
-			})
-			.then(function(response) {
-				if(response.data !== "USER REGISTERED"){
-					alert("Server Error - User was not created")
-				} else {
-					alert('User Created!');
-				}
-			})
+		if(confirm){
+			if (password !== confirmPassword ) {
+				alert("Passwords don't match");
+			} else if (email !== confirmEmail ) {
+				alert("Emails don't match")
+			} else {
+				axios.post(`${process.env.REACT_APP_REGISER_URL}`, {
+					username: username,
+					password: password,
+					email: email,
+					userRole: userRole,
+					joinDate: joinDate,
+				})
+				.then(function(response) {
+					if(response.data !== "USER REGISTERED"){
+						alert("Server Error - User was not created")
+					} else {
+						alert('User Created!');
+					}
+				})
+			}
 		}
 	}
 
@@ -57,6 +65,16 @@ export default function CreateUser({role, confirmAdmin}) {
 		<StyledRegister>
 			<h1>Register User</h1>
 				<div className="form-wrapper">
+					<label>Role:</label>
+					<select
+						type="text" 
+						onChange={(event) => {
+							setUserRole(event.target.value);
+						}}
+					>
+						<option value={process.env.REACT_APP_CREATOR_SECRET}>Creator</option>
+						<option value={process.env.REACT_APP_ADMIN_SECRET}>Admin</option>
+					</select>
 					<label>Username:</label>
 					<input 
 						type="text" 
@@ -89,15 +107,13 @@ export default function CreateUser({role, confirmAdmin}) {
 					<input 
 						type="text" 
 						onChange={(event) => {
-							setConfirm(event.target.value);
+							setConfirmPassword(event.target.value);
 						}}
 					/>
 					{
-                        role === process.env.REACT_APP_ADMIN_SECRET ? (
-                            <StyledButton type="submit" onClick={()=>{registerUser();}}>Create User</StyledButton>
-                        ) : (    
-                            <StyledButton type="submit" onClick={()=>{unauthorized();}}>Create User</StyledButton>
-                        )
+                        user.role === process.env.REACT_APP_ADMIN_SECRET 
+						? <StyledButton type="submit" onClick={()=>{registerUser();}}>Create User</StyledButton>
+                        : <StyledButton type="submit" onClick={()=>{unauthorized();}}>Create User</StyledButton>
                     }
 				</div>
 		</StyledRegister>
@@ -105,22 +121,22 @@ export default function CreateUser({role, confirmAdmin}) {
 }
 
 const StyledRegister = styled.div`
-display: flex;
-align-items: center;
-justify-content: center;
-flex-direction: column;
-background: white;
-height: 80vh;
-width: 100%;
-max-width: 875px;
-margin: 20px auto;
-border-radius: 12px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	background: white;
+	height: 80vh;
+	width: 100%;
+	max-width: 875px;
+	margin: 20px auto;
+	border-radius: 12px;
 	@media (max-width: 1050px){
 		width: 98%;
 	}
 	h1 {
 		font-size: 3em;
-		color: #0f4d92;
+		color: ${pallette.accentColor2};
         margin-bottom: 40px;
     }
 	.form-wrapper {
@@ -137,7 +153,7 @@ border-radius: 12px;
                     font-size: 1.2em;
                 }
             }
-            input {
+            input, select {
                 width: 200px;
                 margin-bottom: 20px;
                 border-radius: 4px;

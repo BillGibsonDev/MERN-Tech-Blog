@@ -11,8 +11,6 @@ import BlogSnip from '../../components/BlogSnip';
 import Loader from '../../loaders/Loader';
 
 // redux
-import { useDispatch } from 'react-redux';
-import { getPosts } from '../../redux/actions/posts';
 import { useSelector } from 'react-redux';
 
 // router
@@ -27,11 +25,10 @@ import Youtube from '../../images/youtube.png';
 import Dot from "../../images/dot.png";
 import Github from '../../images/githubBlack.png';
 
-export default function CreatorPage ({username}) {
+export default function CreatorPage () {
 
     const { authorUsername } = useParams();
 
-    const dispatch = useDispatch();
     const articles = useSelector((state) => state.posts);
 
     const [ creator, setCreator ] = useState([]);
@@ -40,7 +37,6 @@ export default function CreatorPage ({username}) {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        getPosts();
         const getCreator = () => {
             setLoading(true);
             axios.get(`${process.env.REACT_APP_GET_CREATOR_URL}/${authorUsername}`)
@@ -54,11 +50,11 @@ export default function CreatorPage ({username}) {
             });
         };
         getCreator();
-    }, [dispatch, authorUsername])
+    }, [ authorUsername ])
 
     const handleShowMore = () =>{
       let i = 10;
-      setValue(value + i)
+      setValue(value + i);
     }
 
     return (
@@ -126,14 +122,11 @@ export default function CreatorPage ({username}) {
                                 return(
                                     <BlogSnip
                                         author={article.author}
-                                        username={username}
                                         id={article._id}
                                         title={article.postTitle}
                                         date={article.postDate}
                                         linkTitle={article.linkTitle}
                                         thumbnail={article.thumbnail}
-                                        comments={article.comments.length}
-                                        likes={article.likes}
                                         tag={article.tag}
                                         authorUsername={article.authorUsername}
                                         key={key}

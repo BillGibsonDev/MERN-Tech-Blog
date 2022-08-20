@@ -1,18 +1,20 @@
 import { useState, useEffect } from 'react';
-
-// axios
 import axios from 'axios';
 
 // styled
 import styled from 'styled-components';
-
+import { StyledButton } from '../../Styled/Styled';
 // router
 import  { useParams } from 'react-router-dom';
-import { StyledButton } from '../../Styled/Styled';
 
-export default function EditPostPage({username, role, confirmRole}) {
+// redux
+import { useSelector } from 'react-redux';
+
+export default function EditPostPage() {
 
     const { postId } = useParams();
+
+    const user = useSelector((state) => state.user );
 
     const [ isLoading, setLoading ] = useState(true);
     const [ article, setArticle ] = useState({});
@@ -32,9 +34,8 @@ export default function EditPostPage({username, role, confirmRole}) {
             });
         }
         handlePost(postId);
-        setAuthor(username);
-        confirmRole();
-    }, [ postId, username, confirmRole ])
+        setAuthor(user.user);
+    }, [ postId, user ])
 
     const [ postTitle, setPostTitle ] = useState(article.postTitle);
     const [ linkTitle, setLinkTitle ] = useState(article.postTitle);
@@ -42,7 +43,7 @@ export default function EditPostPage({username, role, confirmRole}) {
     const [ thumbnail, setThumbnail ] = useState(article.postTitle);
     const [ postIntro, setPostIntro ] = useState(article.postTitle);
     const [ author, setAuthor ] = useState(article.author);
-    const [inputFields, setInputFields] = useState([]);
+    const [ inputFields, setInputFields ] = useState([]);
 
     const handleUpdate = () => {
         axios.post(`${process.env.REACT_APP_UPDATE_POST_URL}/${postId}`, {
@@ -114,7 +115,6 @@ export default function EditPostPage({username, role, confirmRole}) {
             })
         }
     }
-
 
     return (
         <StyledEditPage>
@@ -223,7 +223,7 @@ export default function EditPostPage({username, role, confirmRole}) {
                                             </label>
                                         </div>
                                         <div className="button-container">
-                                            <StyledButton onClick={handleAddFields}>Add Paragraph</StyledButton >
+                                            <StyledButton onClick={() => { handleAddFields() }}>Add Paragraph</StyledButton >
                                             {
                                                 inputFields.length === 1 
                                                 ? <StyledButton  id="delete">Remove</StyledButton >

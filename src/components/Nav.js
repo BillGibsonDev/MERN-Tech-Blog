@@ -36,9 +36,13 @@ export const Nav = ({role, isLoggedIn, logout}) => {
                     !isLoggedIn
                     ? <div className="overlayContent" onClick={() => { closeNav() }}>
                         <Link to="/" onClick={() => { closeNav() }}>Home</Link>
+                        <Link to="/About">About</Link>
+                        <Link to="/Contact">Contact</Link>
                     </div>
                     : <div className="overlayContent" onClick={() => { closeNav() }}>
                         <Link to="/" onClick={() => { closeNav() }}>Home</Link>
+                        <Link to="/About">About</Link>
+                        <Link to="/Contact">Contact</Link>
                         <Link to="/ProfilePage" onClick={() => { closeNav() }}>Profile</Link>
                         <Link to="/" onClick={()=>{ closeNav(); logout(); }}>Sign Out</Link>
                     </div>

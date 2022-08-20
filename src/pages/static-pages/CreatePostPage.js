@@ -1,18 +1,21 @@
-import { useState, useEffect } from 'react';
-
-// axios
+import { useState } from 'react';
 import axios from 'axios';
 
 // styled
 import styled from 'styled-components';
 import { StyledButton } from '../../Styled/Styled';
-//import * as pallette from '../../Styled/ThemeVariables.js';
 
-export default function CreatePostPage({username, confirmRole}) {
+// redux
+import { useSelector } from 'react-redux';
 
-    useEffect(() => {
-        confirmRole();
-    }, [confirmRole])
+// functions
+import { useConfirmRole } from '../../functions/ConfirmRole';
+
+export default function CreatePostPage() {
+
+    const user = useSelector((state) => state.user);
+
+    const confirm = useConfirmRole(user.role)
 
     const [ postTitle, setPostTitle ] = useState("");
     const [ linkTitle, setLinkTitle ] = useState("");
@@ -31,24 +34,26 @@ export default function CreatePostPage({username, confirmRole}) {
     ]);
 
     const handleSubmit = () => {
-        axios.post(`${process.env.REACT_APP_ADD_POST_URL}`, {
-            author: author,
-            authorUsername: username,
-            postTitle: postTitle,
-            linkTitle: linkTitle,
-            postDate: postDate,
-            thumbnail: thumbnail,
-            postIntro: postIntro,
-            sections: inputFields
-        })
-        .then(function(response){
-            if(response === "Post Created"){
-                alert('Blog Post Added');
-            }
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+        if(confirm){
+            axios.post(`${process.env.REACT_APP_ADD_POST_URL}`, {
+                author: author,
+                authorUsername: user.user,
+                postTitle: postTitle,
+                linkTitle: linkTitle,
+                postDate: postDate,
+                thumbnail: thumbnail,
+                postIntro: postIntro,
+                sections: inputFields
+            })
+            .then(function(response){
+                if(response === "Post Created"){
+                    alert('Blog Post Added');
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        }
     };
 
     const handleAddFields = () => {
