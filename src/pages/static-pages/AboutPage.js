@@ -19,6 +19,7 @@ const StyledAbout = styled.div`
     margin: 20px auto;
     display: flex;
     justify-content: center;
+    text-align: center;
     @media (max-width: 750px){
         width: 95%;
     }
