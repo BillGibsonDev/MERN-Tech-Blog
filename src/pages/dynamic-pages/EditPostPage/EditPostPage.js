@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { marked } from 'marked';
 
 // styled
 import styled from 'styled-components';
 import { StyledButton } from '../../../Styled/StyledButton';
+import * as pallette from '../../../Styled/ThemeVariables.js';
 
 // router
 import  { useParams } from 'react-router-dom';
@@ -12,7 +14,6 @@ import  { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 // components
-import EditSection from './components/EditSection.js';
 import EditIntro from './components/EditIntro';
 
 export default function EditPostPage() {
@@ -31,8 +32,7 @@ export default function EditPostPage() {
             })
             .then(function(response){
                 setLoading(false);
-                setArticle(response.data)
-                setInputFields(response.data.sections)
+                setArticle(response.data);
             })
             .catch(function (error) {
                 console.log(error);
@@ -42,11 +42,11 @@ export default function EditPostPage() {
     }, [ postId, user ])
 
     const [ postTitle, setPostTitle ] = useState(article.postTitle);
-    const [ linkTitle, setLinkTitle ] = useState(article.postTitle);
-    const [ postDate, setPostDate ] = useState(article.postTitle);
-    const [ thumbnail, setThumbnail ] = useState(article.postTitle);
-    const [ postIntro, setPostIntro ] = useState(article.postTitle);
-    const [ inputFields, setInputFields ] = useState([]);
+    const [ linkTitle, setLinkTitle ] = useState(article.linkTitle);
+    const [ postDate, setPostDate ] = useState(article.postDate);
+    const [ thumbnail, setThumbnail ] = useState(article.thumbnail);
+    const [ content, setContent ] = useState(article.content);
+    const[ tag, setTag ] = useState(article.tag);
 
     const handleUpdate = () => {
         axios.post(`${process.env.REACT_APP_UPDATE_POST_URL}/${postId}`, {
@@ -55,8 +55,8 @@ export default function EditPostPage() {
             linkTitle: linkTitle,
             postDate: postDate,
             thumbnail: thumbnail,
-            postIntro: postIntro,
-            sections: inputFields,
+            content: content,
+            tag: tag,
         })
         .then(function(response){
             if(response.data === "Post Updated"){
@@ -72,35 +72,6 @@ export default function EditPostPage() {
         });
     };
 
-    const handleAddFields = () => {
-        const values = [...inputFields];
-        values.push({ paragraph: '', title: '', image: '', link: '' });
-        setInputFields(values);
-    };
-
-    const handleRemoveFields = (index) => {
-        const result = window.confirm("Are you sure you want to delete?");
-        if(result){
-            const values = [...inputFields];
-            values.splice(index, 1);
-            setInputFields(values);
-            console.log(values)
-        }
-    };
-
-  const handleInputChange = (index, event) => {
-    const values = [...inputFields];
-    if (event.target.name === "paragraph") {
-      values[index].paragraph = event.target.value;
-    } else if(event.target.name === "title") {
-      values[index].title = event.target.value;
-    } else if (event.target.name === "image"){
-        values[index].image = event.target.value;
-    } else {
-        values[index].link = event.target.value;
-    }
-    setInputFields(values);
-  };
 
     const deletePost = () => {
         const result = window.confirm("Are you sure you want to delete?");
@@ -130,25 +101,17 @@ export default function EditPostPage() {
                         setLinkTitle={setLinkTitle}
                         setPostDate={setPostDate}
                         setThumbnail={setThumbnail}
-                        setPostIntro={setPostIntro}
+                        setContent={setContent}
                         setPostTitle={setPostTitle}
+                        setTag={setTag}
                     />
-                    { 
-                        inputFields.map((section, index) => {
-                            return (
-                                <EditSection
-                                    section={section}
-                                    key={index}
-                                    index={index}
-                                    inputFields={inputFields}
-                                    setInputFields={setInputFields}
-                                    handleInputChange={handleInputChange}
-                                    handleRemoveFields={handleRemoveFields}
-                                />
-                            )
-                        })
-                    }
-                    <StyledButton onClick={() => { handleAddFields() }}>Add Paragraph</StyledButton >
+                    <h2>Preview</h2>
+                    <div className="content-container"
+                            dangerouslySetInnerHTML={{
+                                __html: marked(article.content),
+                            }}
+                        >
+                    </div>  
                     <div className="bottom-button-container">
                         <StyledButton onClick={() => { handleUpdate() }}>Update</StyledButton>
                         <StyledButton id="delete" onClick={() => { deletePost() }}>Delete</StyledButton>
@@ -170,10 +133,56 @@ const StyledEditPage = styled.div`
     .form-wrapper {
         display: flex;
         flex-direction: column;
-        background: lightgray;
         width: 100%;
         align-items: center;
         border-radius: 12px;
+        h2 {
+            color: ${pallette.helperGrey};
+            font-size: 2em;
+            border-bottom: 2px solid white;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .content-container {
+            ul {
+                list-style: square inside;
+            }
+            img {
+                width: 100%;
+            }
+            p, li {
+                font-size: 20px;
+                margin-bottom: 1.5em;
+                letter-spacing: 0.5px;
+                line-height: 1.7;
+                color: ${pallette.helperGrey};
+                @media (max-width: 750px){
+                    font-size: 16px;
+                }
+            }
+            a {
+                color: ${pallette.helperGrey};
+                font-size: 1em;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+            h4 {
+                color: #ffffff;
+                font-size: 24px;
+                margin: 10px 0 6px 0;
+                @media (max-width: 750px){
+                    font-size: 1.5em;
+                }
+            }
+            code {
+                display: flex;
+                background: white;
+                padding: 20px;
+                font-size: 16px;
+                margin: 10px 0;
+            }
+        }
         .bottom-button-container {
             display: flex;
             width: 100%;

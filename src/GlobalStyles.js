@@ -14,7 +14,7 @@ const GlobalStyles = createGlobalStyle`
         width: 90%;
         background: ${pallette.accentColor};
         font-family: 'Oswald', sans-serif;
-        letter-spacing: .5px;
+        letter-spacing: 1px;
         line-height: 1.5;
         @media (max-width: 1220px){
             width: 90%

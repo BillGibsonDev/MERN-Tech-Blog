@@ -5,15 +5,26 @@ export default function EditIntro({
     article, 
     setLinkTitle, 
     setPostDate, 
-    setPostIntro, 
+    setContent, 
     setThumbnail,
-    setPostTitle
+    setPostTitle,
+    setTag
 }) {
 
     return (
         <StyledEditIntro>
             <div className="info-container">
                 <div className="input-container">
+                    <label>Tag:
+                        <input
+                            type="text"
+                            id="tag"
+                            defaultValue={article.tag}
+                            onChange={(event) => {
+                                setTag(event.target.value);
+                            }}
+                        />
+                    </label>
                     <label>Post Title:
                         <input
                             type="text"
@@ -55,12 +66,12 @@ export default function EditIntro({
                         />
                     </label>
                 </div>
-                <label className="paragraph-textarea">Intro Paragraph:
+                <label>Content:
                     <textarea
-                        id='intro'
-                        defaultValue={article.postIntro}
+                        id='content'
+                        defaultValue={article.content}
                         onChange={(event) =>{
-                            setPostIntro(event.target.value);
+                            setContent(event.target.value);
                         }}
                     />
                 </label>
@@ -71,7 +82,7 @@ export default function EditIntro({
 
 const StyledEditIntro = styled.div`
     border-bottom: 2px white solid;
-    width: 95%;
+    width: 100%;
     justify-content: space-between;
     flex-direction: column;
     display: flex;
@@ -80,9 +91,7 @@ const StyledEditIntro = styled.div`
         display: flex;
         position: relative;
         width: 100%;
-        @media (max-width: 750px){
-            flex-direction: column;
-        }
+        flex-direction: column;
         .input-container {
             width: 100%;
             display: flex;
@@ -95,9 +104,10 @@ const StyledEditIntro = styled.div`
             margin: 10px;
             height: 100%;
             width: 90%;
+            color: white;
             textarea {
-                width: 400px;
-                height: 200px;
+                width:100%;
+                height: 300px;
                 @media (max-width: 450px){
                     width: 90%;
                 }
