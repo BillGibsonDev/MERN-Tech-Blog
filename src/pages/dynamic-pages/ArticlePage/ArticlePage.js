@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { marked } from 'marked';
 
 // styled
 import styled from 'styled-components';
@@ -17,7 +18,6 @@ import { useSelector } from 'react-redux';
 
 // components
 import Intro from './components/Intro.js';
-import Section from './components/Section.js';
 
 export default function BlogArticle() {
 
@@ -67,16 +67,12 @@ export default function BlogArticle() {
                             postId={postId}
                             creator={creator}
                         />
-                        {
-                            article.sections.map((section, key) => {
-                                return (
-                                    <Section
-                                        section={section}
-                                        key={key}
-                                    />
-                                )
-                            })
-                        }
+                        <div className="content-container"
+                            dangerouslySetInnerHTML={{
+                                __html: marked(article.content),
+                            }}
+                        >
+                        </div>  
                         <div className="bottom-author-container">
                             <img src={creator.avatar} alt="" />
                             <div className="author-info-wrapper">
@@ -108,6 +104,43 @@ const StyledArticle = styled.div`
         flex-direction: column;
         margin: auto;
         border-radius: 20px;
+        .content-container {
+            ul {
+                list-style: square inside;
+            }
+            img {
+                width: 100%;
+            }
+            p, li {
+                font-size: 20px;
+                margin-bottom: 1.5em;
+                letter-spacing: 1px;
+                line-height: 1.7;
+                color: ${pallette.helperGrey};
+                @media (max-width: 750px){
+                    font-size: 16px;
+                }
+            }
+            a {
+                color: ${pallette.helperGrey};
+                font-size: 1em;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+            h4 {
+                color: #ffffff;
+                font-size: 1.5em;
+                margin: 10px 0 6px 0;
+            }
+            code {
+                display: flex;
+                background: white;
+                padding: 20px;
+                font-size: 16px;
+                margin: 10px 0;
+            }
+        }
         .bottom-author-container {
             display: flex;
             align-items: center;
