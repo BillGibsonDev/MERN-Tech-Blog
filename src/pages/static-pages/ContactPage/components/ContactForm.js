@@ -3,48 +3,45 @@ import styled from 'styled-components';
 
 // formspree
 import { useForm, ValidationError } from '@formspree/react';
-import { StyledButton } from '../../../../Styled/StyledButton';
 
-const ContactForm = () => {
-  const [state, handleSubmit] = useForm("xgerrpjy");
+export default function ContactForm() {
+  const [state, handleSubmit] = useForm("xqkjaegv");
   if (state.succeeded) {
-    return <p>Thanks for Messaging us!</p>;
+      return <p>Thanks for joining!</p>;
   }
   return (
-      <StyledForm>
+    <StyledForm>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="email">
-          Email Address
-        </label>
-        <input
-          id="email"
-          type="email" 
-          name="email"
-        />
-        <ValidationError 
-          prefix="Email" 
-          field="email"
-          errors={state.errors}
-        />
-        <label htmlFor="message">
-          Message
-        </label>
-        <textarea
-          id="message"
-          name="message"
-        />
-        <ValidationError 
-          prefix="Message" 
-          field="message"
-          errors={state.errors}
-        />
-        <StyledButton type="submit" disabled={state.submitting}>
-          Submit
-        </StyledButton>
-      </form>
+      <label htmlFor="email">
+        Email Address
+      </label>
+      <input
+        id="email"
+        type="email" 
+        name="email"
+      />
+      <ValidationError 
+        prefix="Email" 
+        field="email"
+        errors={state.errors}
+      />
+      <textarea
+        id="message"
+        name="message"
+      />
+      <ValidationError 
+        prefix="Message" 
+        field="message"
+        errors={state.errors}
+      />
+      <button type="submit" disabled={state.submitting}>
+        Submit
+      </button>
+    </form>
     </StyledForm>
   );
 }
+
 
 const StyledForm = styled.div`
   width: 70%;
@@ -93,6 +90,3 @@ const StyledForm = styled.div`
     }
   }
 `;
-
-
-export default ContactForm;

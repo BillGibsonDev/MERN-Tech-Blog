@@ -47,6 +47,7 @@ export default function EditSection({
                         type="text"
                         id="paragraph"
                         name="paragraph"
+                        key={section.paragraph}
                         defaultValue={section.paragraph}
                         onChange={event => handleInputChange(index, event)}
                     />
@@ -87,10 +88,7 @@ const StyledEditSection = styled.section`
             font-size: 1.5em;
             margin: 10px;
             height: 100%;
-            width: 50%;
-            @media (max-width: 450px){
-                width: 90%;
-            }
+            width: 90%;
             textarea {
                 width: 400px;
                 height: 200px;

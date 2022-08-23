@@ -260,10 +260,7 @@ const StyledCreatePage = styled.div`
                 font-size: 1.5em;
                 margin: 10px;
                 height: 100%;
-                width: 50%;
-                @media (max-width: 750px){
-                    width: 100%;
-                }
+                width: 90%auto;
                 textarea {
                     width: 400px;
                     height: 200px;

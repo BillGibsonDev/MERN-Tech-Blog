@@ -34,7 +34,6 @@ const GlobalStyles = createGlobalStyle`
     }
     input {
         height: 30px;
-        width: 200px;
         border-radius: 4px;
         background: white;
         @media (max-width: 1150px){
