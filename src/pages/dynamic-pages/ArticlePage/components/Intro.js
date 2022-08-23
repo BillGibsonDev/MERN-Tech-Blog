@@ -105,7 +105,7 @@ const StyledIntro = styled.section`
         align-items: center;
         justify-content: space-between;
         width: 100%;
-        margin: 10px 0 30px 0;
+        margin: 10px 0 10px 0;
         .author-container {
             display: flex;
             width: 110px;
