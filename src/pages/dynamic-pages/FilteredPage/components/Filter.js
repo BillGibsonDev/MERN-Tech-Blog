@@ -1,6 +1,6 @@
 // styled
 import styled from 'styled-components';
-import * as pallette from '../Styled/ThemeVariables.js';
+import * as pallette from '../../../../Styled/ThemeVariables.js';
 
 // router
 import { Link } from 'react-router-dom';
@@ -21,11 +21,11 @@ export default function Filter() {
 
   return (
     <StyledFilter>
-        <Link className="filter" id="html" to="/articles/HTML">HTML</Link>
-        <Link className="filter" id="css" to="/articles/CSS">CSS</Link>
-        <Link className="filter" id="javascript" to="/articles/JavaScript">JavaScript</Link>
-        <Link className="filter" id="react" to="/articles/React">React</Link>
-        <Link className="filter" id="apis" to="/articles/Apis">APIs</Link>
+      <Link className="filter" id="html" to="/articles/HTML">HTML</Link>
+      <Link className="filter" id="css" to="/articles/CSS">CSS</Link>
+      <Link className="filter" id="javascript" to="/articles/JavaScript">JavaScript</Link>
+      <Link className="filter" id="react" to="/articles/React">React</Link>
+      <Link className="filter" id="apis" to="/articles/Apis">APIs</Link>
     </StyledFilter>
   )
 }

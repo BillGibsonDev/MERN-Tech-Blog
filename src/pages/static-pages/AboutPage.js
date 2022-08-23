@@ -33,8 +33,8 @@ const StyledAbout = styled.div`
             width: 50%;
             margin: 10px auto;
             font-size: 2.5em;
-            color: #ebebeb;
-            border-bottom: 2px #ebebeb solid;
+            color: #fff;
+            border-bottom: 2px #fff solid;
         }
         #bottomHeader {
             margin-top: 50px;

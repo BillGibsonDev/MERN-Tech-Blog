@@ -10,7 +10,7 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 // static pages
 import HomePage from "./pages/static-pages/HomePage";
 import AboutPage from './pages/static-pages/AboutPage';
-import ContactPage from './pages/static-pages/ContactPage';
+import ContactPage from './pages/static-pages/ContactPage/ContactPage';
 import CreateUser from "./pages/static-pages/CreateUser.js";
 import CreatePostPage from "./pages/static-pages/CreatePostPage";
 import LoginPage from "./pages/static-pages/LoginPage.js";
@@ -18,10 +18,10 @@ import ProfilePage from "./pages/static-pages/ProfilePage";
 import CreateCreator from './pages/static-pages/CreateCreator.js';
 
 // dynamic pages
-import CreatorPage from './pages/dynamic-pages/CreatorPage';
-import ArticlePage from "./pages/dynamic-pages/ArticlePage.js";
-import EditPostPage from "./pages/dynamic-pages/EditPostPage";
-import FilteredSearchPage from './pages/dynamic-pages/FilteredSearchPage';
+import CreatorPage from './pages/dynamic-pages/CreatorPage/CreatorPage';
+import ArticlePage from "./pages/dynamic-pages/ArticlePage/ArticlePage.js";
+import EditPostPage from "./pages/dynamic-pages/EditPostPage/EditPostPage";
+import FilteredSearchPage from './pages/dynamic-pages/FilteredPage/FilteredSearchPage';
 import EditCreator from "./pages/dynamic-pages/EditCreator.js";
 
 // components

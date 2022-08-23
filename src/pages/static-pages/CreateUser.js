@@ -141,32 +141,32 @@ const StyledRegister = styled.div`
         margin-bottom: 40px;
     }
 	.form-wrapper {
-            display: flex;
-            width: 90%;
-            flex-direction: column;
-            align-items: center;
-            @media (max-width: 1150px){
-                font-size: 1.2em;
-            }
-            label {
-                font-weight: bold;
-                @media (max-width: 1150px){
-                    font-size: 1.2em;
-                }
-            }
-            input, select {
-                width: 200px;
-                margin-bottom: 20px;
-                border-radius: 4px;
-                @media (max-width: 1150px){
-                    width: 50%;
-                }
-                @media (max-width: 750px){
-                    width: 70%;
-                }
-				@media (max-width: 550px){
-                    width: 90%;
-                }
-            }
-        }
+		display: flex;
+		width: 90%;
+		flex-direction: column;
+		align-items: center;
+		@media (max-width: 1150px){
+			font-size: 1.2em;
+		}
+		label {
+			font-weight: bold;
+			@media (max-width: 1150px){
+				font-size: 1.2em;
+			}
+		}
+		input, select {
+			width: 200px;
+			margin-bottom: 20px;
+			border-radius: 4px;
+			@media (max-width: 1150px){
+				width: 50%;
+			}
+			@media (max-width: 750px){
+				width: 70%;
+			}
+			@media (max-width: 550px){
+				width: 90%;
+			}
+		}
+	}
 `;

@@ -3,12 +3,12 @@ import styled from 'styled-components';
 
 // formspree
 import { useForm, ValidationError } from '@formspree/react';
-import { StyledButton } from '../Styled/StyledButton';
+import { StyledButton } from '../../../../Styled/StyledButton';
 
 const ContactForm = () => {
   const [state, handleSubmit] = useForm("xgerrpjy");
   if (state.succeeded) {
-      return <p>Thanks for Messaging us!</p>;
+    return <p>Thanks for Messaging us!</p>;
   }
   return (
       <StyledForm>

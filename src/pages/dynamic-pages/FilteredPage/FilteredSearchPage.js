@@ -4,12 +4,12 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 // components
-import BlogSnip from '../../components/BlogSnip';
-import Filter from '../../components/Filter';
+import BlogSnip from '../../../components/BlogSnip';
+import Filter from './components/Filter';
 
 // redux
 import { useDispatch } from 'react-redux';
-import { getPosts } from '../../redux/actions/posts';
+import { getPosts } from '../../../redux/actions/posts';
 import { useSelector } from 'react-redux';
 
 // router

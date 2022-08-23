@@ -89,7 +89,7 @@ export default function CreatePostPage() {
 
     return (
         <StyledCreatePage>
-            <div className="formWrapper">
+            <div className="form-wrapper">
                 <section id="intro">
                     <div className="info-container">
                         <div className="input-container">
@@ -199,7 +199,7 @@ export default function CreatePostPage() {
                                     {
                                         inputFields.length === 1 
                                         ? <button>Remove</button>
-                                        : <button onClick={() => { handleRemoveFields(index) }}>Remove</button>
+                                        : <button onClick={(index) => { handleRemoveFields(index) }}>Remove</button>
                                     }
                                 </div>
                             </section>
@@ -227,7 +227,7 @@ const StyledCreatePage = styled.div`
         font-size: 3em;
         margin: 1em 0;
     }
-    .formWrapper {
+    .form-wrapper {
         display: flex;
         flex-direction: column;
         background: lightgray;

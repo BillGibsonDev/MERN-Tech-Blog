@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 
 // form
-import ContactForm from '../../components/ContactForm';
+import ContactForm from './components/ContactForm';
 
 export default function Contact () {
     return (
