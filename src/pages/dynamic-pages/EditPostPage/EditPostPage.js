@@ -14,7 +14,7 @@ import  { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 // components
-import EditIntro from './components/EditIntro';
+import EditIntro from './components/EditForm';
 
 export default function EditPostPage() {
 
@@ -71,7 +71,6 @@ export default function EditPostPage() {
             console.log(error);
         });
     };
-
 
     const deletePost = () => {
         const result = window.confirm("Are you sure you want to delete?");

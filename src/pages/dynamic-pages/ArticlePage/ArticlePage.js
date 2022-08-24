@@ -131,6 +131,7 @@ const StyledArticle = styled.div`
             h4 {
                 color: #ffffff;
                 font-size: 1.5em;
+                font-weight: 800;
                 margin: 10px 0 6px 0;
             }
             code {
@@ -138,7 +139,7 @@ const StyledArticle = styled.div`
                 background: white;
                 padding: 20px;
                 font-size: 16px;
-                margin: 10px 0;
+                margin: 10px 0;   
             }
         }
         .bottom-author-container {

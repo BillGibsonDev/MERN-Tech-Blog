@@ -126,14 +126,13 @@ export default function CreatePostPage() {
                         />
                     </label>
                 </section>
-
                 <div className="button-wrapper">
                     <StyledButton onClick={() => { handleSubmit() }}>Submit</StyledButton>
                 </div>
 
                 <div className="content-container"
                     dangerouslySetInnerHTML={{
-                    __html: marked(content),
+                        __html: marked(content),
                     }}
                 >
                 </div>

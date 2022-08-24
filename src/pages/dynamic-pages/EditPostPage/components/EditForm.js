@@ -106,11 +106,8 @@ const StyledEditIntro = styled.div`
             width: 90%;
             color: white;
             textarea {
-                width:100%;
+                width: 100%;
                 height: 300px;
-                @media (max-width: 450px){
-                    width: 90%;
-                }
             }
         }
     }
