@@ -4,6 +4,9 @@ import styled from 'styled-components';
 // formspree
 import { useForm, ValidationError } from '@formspree/react';
 
+// styled
+import {StyledButton} from '../../../../Styled/StyledButton.js';
+
 export default function ContactForm() {
   const [state, handleSubmit] = useForm("xqkjaegv");
   if (state.succeeded) {
@@ -19,6 +22,7 @@ export default function ContactForm() {
         id="email"
         type="email" 
         name="email"
+        placeholder='Your email'
       />
       <ValidationError 
         prefix="Email" 
@@ -28,15 +32,16 @@ export default function ContactForm() {
       <textarea
         id="message"
         name="message"
+        placeholder='Your message'
       />
       <ValidationError 
         prefix="Message" 
         field="message"
         errors={state.errors}
       />
-      <button type="submit" disabled={state.submitting}>
+      <StyledButton type="submit" disabled={state.submitting}>
         Submit
-      </button>
+      </StyledButton>
     </form>
     </StyledForm>
   );
@@ -71,7 +76,7 @@ const StyledForm = styled.div`
     }
     textarea, input {
       padding: 2px;
-      font-size: 1.5em;
+      font-size: 1em;
       font-weight: normal;
     }
     textarea{

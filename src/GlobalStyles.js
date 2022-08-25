@@ -31,6 +31,7 @@ const GlobalStyles = createGlobalStyle`
     }
     textarea, input {
         padding: 4px;
+        font-family: 'Oswald', sans-serif;
     }
     input {
         height: 30px;
