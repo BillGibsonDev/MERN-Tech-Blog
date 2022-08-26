@@ -7,7 +7,7 @@ export const useConfirmRole = (role) => {
     const navigate = useNavigate();
     const user = useSelector((state) => state.user );
     const [ confirm, setConfirm ] = useState(false);
-    axios.post(`${process.env.REACT_APP_ROLE_CONFIRM_URL}`, {
+    axios.post(`${process.env.REACT_APP_BASE_URL}/${process.env.REACT_APP_ROLE_CONFIRM_URL}`, {
         role: user.role,
     })
     .then(function(response){

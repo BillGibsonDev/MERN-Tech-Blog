@@ -29,7 +29,7 @@ export default function CreatePostPage() {
 
     const handleSubmit = () => {
         if(confirm){
-            axios.post(`${process.env.REACT_APP_ADD_POST_URL}`, {
+            axios.post(`${process.env.REACT_APP_BASE_URL}/${process.env.REACT_APP_ADD_POST_URL}`, {
                 author: author,
                 authorUsername: user.user,
                 postTitle: postTitle,
@@ -40,8 +40,10 @@ export default function CreatePostPage() {
                 tag: tag,
             })
             .then(function(response){
-                if(response === "Post Created"){
+                if(response.data === "Post Created"){
                     alert('Blog Post Added');
+                } else {
+                    alert('Error - Blog Post Not Added');
                 }
             })
             .catch(function (error) {
@@ -212,6 +214,8 @@ const StyledCreatePage = styled.div`
         }
     }
     .content-container {
+        width: 90%;
+        margin: auto;
         ul {
             list-style: square inside;
         }

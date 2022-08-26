@@ -33,7 +33,7 @@ export default function CreateCreator() {
 
     const registerCreator = () => {
         if(confirm){
-            axios.post(`${process.env.REACT_APP_ADD_CREATOR_URL}`, {
+            axios.post(`${process.env.REACT_APP_BASE_URL}/${process.env.REACT_APP_ADD_CREATOR_URL}`, {
                 creator: creator,
                 authorUsername: authorUsername,
                 avatar: avatar,
@@ -47,10 +47,10 @@ export default function CreateCreator() {
                 location: location,
             })
             .then(function(response) {
-                if(response.data !== "Creator Registered!"){
-                    alert("Server Error - Creator was not created")
-                } else {
+                if(response.data === "Creator Registered!"){
                     alert('Creator registered!');
+                } else {
+                    alert("Server Error - Creator was not created")
                 }
             })
             .catch((error) => {
@@ -175,13 +175,9 @@ const StyledRegister = styled.div`
     }
 	.form-wrapper {
         display: flex;
-        width: 50%;
+        width: 90%;
         align-items: center;
         justify-content: space-between;
-        @media (max-width: 1150px){
-            font-size: 1.2em;
-            width: 70%;
-        }
         @media (max-width: 850px){
             flex-direction: column;
             width: 90%;
@@ -193,15 +189,9 @@ const StyledRegister = styled.div`
             }
         }
         input {
-            width: 200px;
+            width: 100%;
             margin-bottom: 20px;
             border-radius: 4px;
-            @media (max-width: 1150px){
-                width: 50%;
-            }
-            @media (max-width: 750px){
-                width: 70%;
-            }
             @media (max-width: 550px){
                 width: 90%;
             }
@@ -209,6 +199,7 @@ const StyledRegister = styled.div`
         .right-container, .left-container {
             display: flex;
             flex-direction: column;
+            width: 45%;
             @media (max-width: 850px){
                 width: 100%;
             }

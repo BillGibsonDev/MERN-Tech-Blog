@@ -69,7 +69,7 @@ function App() {
 
 	const login = () => {
 		setLoading(true);
-		axios.post(`${process.env.REACT_APP_LOGIN_URL}`, {
+		axios.post(`${process.env.REACT_APP_BASE_URL}/${process.env.REACT_APP_LOGIN_URL}`, {
 			username: username,
 			password: password,
 			lastLogin: lastLogin,
@@ -78,7 +78,7 @@ function App() {
 			setLoading(false);
 			handleTokens();
 			if (response.data === "LOGGED IN"){
-				axios.post(`${process.env.REACT_APP_SET_ROLE_URL}`, {
+				axios.post(`${process.env.REACT_APP_BASE_URL}/${process.env.REACT_APP_SET_ROLE_URL}`, {
 					username: username, 
 					password: password,
 				})
@@ -118,14 +118,14 @@ function App() {
 		if (tokenPW === null && tokenUser === null) {
 			setLoggedIn(false);
 		} else {
-			axios.post(`${process.env.REACT_APP_LOGIN_URL}`, {
+			axios.post(`${process.env.REACT_APP_BASE_URL}/${process.env.REACT_APP_LOGIN_URL}`, {
 			username: tokenUser,
 			password: tokenPW,
 		})
 		.then(function(response){
 			setUsername(tokenUser);
 			if (response.data === "LOGGED IN"){
-				axios.post(`${process.env.REACT_APP_SET_ROLE_URL}`, {
+				axios.post(`${process.env.REACT_APP_BASE_URL}/${process.env.REACT_APP_SET_ROLE_URL}`, {
 					username: tokenUser, 
 					password: tokenPW,
 				})

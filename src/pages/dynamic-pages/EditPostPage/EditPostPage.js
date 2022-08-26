@@ -27,7 +27,7 @@ export default function EditPostPage() {
 
     useEffect(() => {
         const handlePost = () => {
-            axios.get(`${process.env.REACT_APP_GET_POST_URL}/${postId}`, {
+            axios.get(`${process.env.REACT_APP_BASE_URL}/${process.env.REACT_APP_GET_POST_URL}/${postId}`, {
                 postId: postId,
             })
             .then(function(response){
@@ -49,7 +49,7 @@ export default function EditPostPage() {
     const[ tag, setTag ] = useState(article.tag);
 
     const handleUpdate = () => {
-        axios.post(`${process.env.REACT_APP_UPDATE_POST_URL}/${postId}`, {
+        axios.post(`${process.env.REACT_APP_BASE_URL}/${process.env.REACT_APP_UPDATE_POST_URL}/${postId}`, {
             postId: postId,
             postTitle: postTitle,
             linkTitle: linkTitle,
@@ -76,14 +76,14 @@ export default function EditPostPage() {
         const result = window.confirm("Are you sure you want to delete?");
         if(result === true){
             setLoading(true);
-            axios.delete(`${process.env.REACT_APP_DELETE_POST_URL}/${postId}`)
+            axios.delete(`${process.env.REACT_APP_BASE_URL}/${process.env.REACT_APP_DELETE_POST_URL}/${postId}`)
             .then(function(response){
-                if(response.data !== "Post Deleted"){
-                    setLoading(false);
-                    alert("Server Error - Post not updated")
-                } else {
+                if(response.data === "Post Deleted"){
                     setLoading(false);
                     alert('Post Deleted!');
+                } else {
+                    setLoading(false);
+                    alert("Server Error - Post not updated");
                 }
             })
         }
@@ -141,8 +141,12 @@ const StyledEditPage = styled.div`
             border-bottom: 2px solid white;
             width: 100%;
             margin-bottom: 20px;
+            width: 90%;
+            margin: auto;
         }
         .content-container {
+            width: 90%;
+            margin: auto;
             ul {
                 list-style: square inside;
             }

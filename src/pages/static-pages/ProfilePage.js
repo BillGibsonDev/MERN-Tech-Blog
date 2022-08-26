@@ -32,13 +32,13 @@ export default function ProfilePage() {
 
     useEffect(() => {
         const handleJoinDate = () => {
-            axios.post(`${process.env.REACT_APP_LOGIN_URL}`, {
+            axios.post(`${process.env.REACT_APP_BASE_URL}/${process.env.REACT_APP_LOGIN_URL}`, {
                 username: tokenUser,
                 password: tokenPW,
             })
             .then(function(response){
                 if (response.data === "LOGGED IN"){
-                    axios.post(`${process.env.REACT_APP_GET_DATE_URL}`, {
+                    axios.post(`${process.env.REACT_APP_BASE_URL}/${process.env.REACT_APP_GET_DATE_URL}`, {
                         username: tokenUser, 
                         password: tokenPW,
                     })
