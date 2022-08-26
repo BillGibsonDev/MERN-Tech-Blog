@@ -90,7 +90,9 @@ function App() {
 					console.log(error);
 				})
 			} else {
-				alert("Wrong Username or Password");
+				localStorage.clear();
+				sessionStorage.clear();
+				setLoggedIn(false);
 			}
 		})
 		.catch(function (error) {
@@ -133,6 +135,10 @@ function App() {
 					dispatch(getUser(tokenUser, response.data));
 					setLoggedIn(true);
 				})
+			} else {
+				localStorage.clear();
+				sessionStorage.clear();
+				setLoggedIn(false);
 			}
 		})
 		.catch(function (error) {
