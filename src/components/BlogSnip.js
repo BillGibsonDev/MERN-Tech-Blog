@@ -24,7 +24,7 @@ export default function BlogSnip({
 
     useEffect(() => {
         const handleCreator = () => {
-            axios.get(`${process.env.REACT_APP_GET_CREATOR_URL}/${authorUsername}`)
+            axios.get(`${process.env.REACT_APP_BASE_URL}/${process.env.REACT_APP_GET_CREATOR_URL}/${authorUsername}`)
             .then(function(response){
                 setCreator(response.data[0]);
             })

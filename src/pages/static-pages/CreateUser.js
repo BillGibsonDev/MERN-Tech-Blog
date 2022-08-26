@@ -43,7 +43,7 @@ export default function CreateUser() {
 			} else if (email !== confirmEmail ) {
 				alert("Emails don't match");
 			} else {
-				axios.post(`${process.env.REACT_APP_REGISTER_URL}`, {
+				axios.post(`${process.env.REACT_APP_BASE_URL}/${process.env.REACT_APP_REGISTER_URL}`, {
 					username: username,
 					password: password,
 					email: email,
@@ -155,13 +155,10 @@ const StyledRegister = styled.div`
 			}
 		}
 		input, select {
-			width: 200px;
+			width: 50%;
 			margin-bottom: 20px;
 			border-radius: 4px;
-			@media (max-width: 1150px){
-				width: 50%;
-			}
-			@media (max-width: 750px){
+			@media (max-width: 850px){
 				width: 70%;
 			}
 			@media (max-width: 550px){

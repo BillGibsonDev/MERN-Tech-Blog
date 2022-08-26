@@ -34,7 +34,7 @@ export default function CreateCreator() {
         window.scrollTo(0, 0);
         const getCreator = () => {
             setLoading(true);
-            axios.get(`${process.env.REACT_APP_GET_CREATOR_URL}/${user.user}`)
+            axios.get(`${process.env.REACT_APP_BASE_URL}/${process.env.REACT_APP_GET_CREATOR_URL}/${user.user}`)
             .then(function(response){
                 setLoading(false);
                 setCreator(response.data[0]);
@@ -63,7 +63,7 @@ export default function CreateCreator() {
     
     const handleUpdateCreator = () => {
         if(confirm){
-            axios.post(`${process.env.REACT_APP_UPDATE_CREATOR_URL}/${creator._id}`, {
+            axios.post(`${process.env.REACT_APP_BASE_URL}/${process.env.REACT_APP_UPDATE_CREATOR_URL}/${creator._id}`, {
                 creator: creatorName,
                 authorUsername: authorUsername,
                 avatar: avatar,
@@ -207,11 +207,12 @@ align-items: center;
 justify-content: center;
 flex-direction: column;
 background: white;
-height: 80vh;
+min-height: 80vh;
 width: 100%;
 max-width: 875px;
 margin: 20px auto;
 border-radius: 12px;
+padding-bottom: 20px;
 	@media (max-width: 1050px){
 		width: 98%;
 	}
@@ -222,11 +223,12 @@ border-radius: 12px;
     }
 	.form-wrapper {
         display: flex;
-        width: 50%;
+        width: 90%;
         align-items: center;
         justify-content: space-between;
-        @media (max-width: 1150px){
-            font-size: 1.2em;
+        @media (max-width: 850px){
+            flex-direction: column;
+            width: 90%;
         }
         label {
             font-weight: bold;
@@ -235,23 +237,18 @@ border-radius: 12px;
             }
         }
         input {
-            width: 200px;
+            width: 100%;
             margin-bottom: 20px;
             border-radius: 4px;
             padding: 4px;
-            @media (max-width: 1150px){
-                width: 50%;
-            }
-            @media (max-width: 750px){
-                width: 70%;
-            }
-            @media (max-width: 550px){
-                width: 90%;
-            }
         }
         .right-container, .left-container {
             display: flex;
             flex-direction: column;
+            width: 45%;
+            @media (max-width: 850px){
+                width: 100%;
+            }
         } 
     }
 `;

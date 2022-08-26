@@ -29,7 +29,7 @@ export default function CreatePostPage() {
 
     const handleSubmit = () => {
         if(confirm){
-            axios.post(`${process.env.REACT_APP_ADD_POST_URL}`, {
+            axios.post(`${process.env.REACT_APP_BASE_URL}/${process.env.REACT_APP_ADD_POST_URL}`, {
                 author: author,
                 authorUsername: user.user,
                 postTitle: postTitle,
@@ -212,6 +212,8 @@ const StyledCreatePage = styled.div`
         }
     }
     .content-container {
+        width: 90%;
+        margin: auto;
         ul {
             list-style: square inside;
         }

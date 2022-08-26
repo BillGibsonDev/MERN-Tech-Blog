@@ -34,14 +34,14 @@ export default function BlogArticle() {
     useEffect(() => {
         window.scrollTo(0, 0);
         const getPosts = () => {
-            axios.get(`${process.env.REACT_APP_GET_POST_URL}/${postId}`)
+            axios.get(`${process.env.REACT_APP_BASE_URL}/${process.env.REACT_APP_GET_POST_URL}/${postId}`)
             .then(function(response){
                 setArticle(response.data);
                 setLoading(false);
                 if(response){
                     const [ year, month, day ] = response.data.postDate.split('-');
                     setSplitDate(`${month}-${day}-${year}`);
-                    axios.get(`${process.env.REACT_APP_GET_CREATOR_URL}/${response.data.authorUsername}`)
+                    axios.get(`${process.env.REACT_APP_BASE_URL}/${process.env.REACT_APP_GET_CREATOR_URL}/${response.data.authorUsername}`)
                     .then(function(response){
                         setCreator(response.data[0]);
                     })
