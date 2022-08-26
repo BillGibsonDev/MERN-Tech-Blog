@@ -47,10 +47,10 @@ export default function CreateCreator() {
                 location: location,
             })
             .then(function(response) {
-                if(response.data !== "Creator Registered!"){
-                    alert("Server Error - Creator was not created")
-                } else {
+                if(response.data === "Creator Registered!"){
                     alert('Creator registered!');
+                } else {
+                    alert("Server Error - Creator was not created")
                 }
             })
             .catch((error) => {

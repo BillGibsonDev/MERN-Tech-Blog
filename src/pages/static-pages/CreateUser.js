@@ -51,11 +51,11 @@ export default function CreateUser() {
 					joinDate: joinDate,
 				})
 				.then(function(response) {
-					if(response.data !== "USER REGISTERED"){
+					if(response.data === "USER REGISTERED"){
+						alert('User Created!');
+					} else {
 						alert("Server Error - User was not created")
 						console.log(response.data);
-					} else {
-						alert('User Created!');
 					}
 				})
 			}

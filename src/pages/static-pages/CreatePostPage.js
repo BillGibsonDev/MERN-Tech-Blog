@@ -40,8 +40,10 @@ export default function CreatePostPage() {
                 tag: tag,
             })
             .then(function(response){
-                if(response === "Post Created"){
+                if(response.data === "Post Created"){
                     alert('Blog Post Added');
+                } else {
+                    alert('Error - Blog Post Not Added');
                 }
             })
             .catch(function (error) {

@@ -78,12 +78,12 @@ export default function EditPostPage() {
             setLoading(true);
             axios.delete(`${process.env.REACT_APP_BASE_URL}/${process.env.REACT_APP_DELETE_POST_URL}/${postId}`)
             .then(function(response){
-                if(response.data !== "Post Deleted"){
-                    setLoading(false);
-                    alert("Server Error - Post not updated")
-                } else {
+                if(response.data === "Post Deleted"){
                     setLoading(false);
                     alert('Post Deleted!');
+                } else {
+                    setLoading(false);
+                    alert("Server Error - Post not updated");
                 }
             })
         }
