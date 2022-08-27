@@ -216,43 +216,46 @@ const StyledCreatePage = styled.div`
     .content-container {
         width: 90%;
         margin: auto;
-        ul {
+        ul{
             list-style: square inside;
         }
         img {
             width: 100%;
+            margin-bottom: 10px;
         }
         p, li {
-            font-size: 20px;
+            font-size: 1rem;
             margin-bottom: 1.5em;
             letter-spacing: 0.5px;
             line-height: 1.7;
             color: ${pallette.helperGrey};
-            @media (max-width: 750px){
-                font-size: 16px;
-            }
         }
         a {
-            color: ${pallette.helperGrey};
-            font-size: 1em;
-            &:hover {
-                text-decoration: underline;
-            }
+            color: #9acdff;
+            font-size: 1rem;
+            text-decoration: underline;
         }
         h4 {
             color: #ffffff;
-            font-size: 24px;
             margin: 10px 0 6px 0;
-            @media (max-width: 750px){
-                font-size: 1.5em;
-            }
+            font-size: 2rem;
+        }
+        h5 {
+            color: #ffffff;
+            margin: 10px 0;
+            font-size: 1.5rem;
+        }
+        h6 {
+            color: #ffffff;
+            margin: 10px 0 6px 0;
+            font-size: 1.2rem;
         }
         code {
             display: flex;
             background: white;
             padding: 20px;
-            font-size: 16px;
+            font-size: 1rem;
             margin: 10px 0;
-        }
+            }
     }
 `;
