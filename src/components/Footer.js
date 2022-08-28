@@ -15,16 +15,16 @@ export const Footer = () => {
         <StyledFooter>
             <div className="icon-container">
                 <a href="https://twitter.com/GibbyBreaksTech" target="_blank" rel="noreferrer">
-                    <img src={Twitter} alt="" />
+                    <img src={Twitter} alt="Twitter Link" />
                 </a>
                 <a href="https://www.linkedin.com/in/bill-gibson-868182104/" target="_blank" rel="noreferrer">
-                    <img src={Linkedin} alt="" />
+                    <img src={Linkedin} alt="Linkedin Link" />
                 </a>
                 <a href="https://github.com/GibbyBreaksTech" target="_blank" rel="noreferrer">
-                    <img src={Github} alt="" />
+                    <img src={Github} alt="Github Link" />
                 </a>
                 <a href="https://billgibson.net" target="_blank" rel="noreferrer">
-                    <img src={Globe} alt="" />
+                    <img src={Globe} alt="Portfolio Link" />
                 </a>
             </div>
             <div className="link-container">

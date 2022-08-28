@@ -105,7 +105,7 @@ const StyledArticle = styled.div`
         margin: auto;
         border-radius: 20px;
         .content-container {
-            ul {
+           ul {
                 list-style: square inside;
             }
             img {
@@ -115,9 +115,9 @@ const StyledArticle = styled.div`
             p, li {
                 font-size: 1rem;
                 margin-bottom: 1.5em;
-                letter-spacing: 0.5px;
+                letter-spacing: 1px;
                 line-height: 1.7;
-                color: ${pallette.helperGrey};
+                color: #fff;
             }
             a {
                 color: #9acdff;
@@ -125,26 +125,27 @@ const StyledArticle = styled.div`
                 text-decoration: underline;
             }
             h4 {
-                color: #ffffff;
-                margin: 10px 0 6px 0;
-                font-size: 2rem;
+                color: ${pallette.titleColor};
+                margin: 30px 0 6px 0;
+                font-size: 2.5rem;
             }
             h5 {
-                color: #ffffff;
+                color: ${pallette.titleColor};
                 margin: 10px 0;
-                font-size: 1.5rem;
+                font-size: 2rem;
             }
             h6 {
-                color: #ffffff;
+                color: ${pallette.titleColor};
                 margin: 10px 0 6px 0;
-                font-size: 1.2rem;
+                font-size: 1.5rem;
             }
             code {
                 display: flex;
                 background: white;
-                padding: 20px;
+                padding: 10px;
                 font-size: 1rem;
                 margin: 10px 0;
+                white-space: pre-wrap;
             }
         }
         .bottom-author-container {
