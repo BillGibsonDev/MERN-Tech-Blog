@@ -40,7 +40,7 @@ export default function HomePage () {
                     {
                        number === 0 
                         ? <Loader />
-                        : articles.reverse().map((article, key) => {
+                        : articles.map((article, key) => {
                             return(
                                 <BlogSnip
                                     author={article.author}

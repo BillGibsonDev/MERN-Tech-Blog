@@ -48,7 +48,7 @@ export default function FilteredSearchPage () {
                         </div>
                         : <>
                             {
-                                articles.filter(articles => articles.tag === `${tag}`).slice(0, value).reverse().map((article, key) =>  {
+                                articles.filter(articles => articles.tag === `${tag}`).slice(0, value).map((article, key) =>  {
                                     return(
                                         <BlogSnip
                                             author={article.author}
