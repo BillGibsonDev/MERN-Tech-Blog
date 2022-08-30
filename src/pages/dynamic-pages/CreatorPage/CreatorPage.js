@@ -62,7 +62,7 @@ export default function CreatorPage () {
                     <div className="blog">
                         <div className="blogWrapper">
                             {
-                                articles.filter(articles => articles.authorUsername === `${authorUsername}`).slice().reverse().map((article, key) => {
+                                articles.filter(articles => articles.authorUsername === `${authorUsername}`).map((article, key) => {
                                     return(
                                         <BlogSnip
                                             author={article.author}

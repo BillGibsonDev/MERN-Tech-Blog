@@ -23,7 +23,10 @@ export const Nav = ({isLoggedIn, logout}) => {
             <Link to="/" id="logo">Tech Blog</Link>
             {
                 !isLoggedIn
-                ? <></>
+                ? <nav>
+                    <Link to="/">Home</Link>
+                    <Link to="/About">About</Link>
+                    <Link to="/Contact">Contact</Link></nav>
                 : <nav>
                     <Link to="/">Home</Link>
                     <Link to="/ProfilePage">Profile</Link>
