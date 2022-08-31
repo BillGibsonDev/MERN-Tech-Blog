@@ -29,6 +29,9 @@ export default function ContactForm() {
         field="email"
         errors={state.errors}
       />
+      <label htmlFor="message">
+        Message
+      </label>
       <textarea
         id="message"
         name="message"
@@ -55,8 +58,8 @@ const StyledForm = styled.div`
   background: lightgray;
   border-radius: 12px;
   @media (max-width: 1000px){
-        width: 90%;
-    }
+    width: 100%;
+  }
   form {
     display: flex;
     flex-direction: column;
@@ -64,13 +67,16 @@ const StyledForm = styled.div`
     margin: 5% auto;
     height: 100%;
     @media (max-width: 1000px){
-        width: 90%;
+      width: 90%;
     }
-    button, input, textarea, label {
-      margin: 6px auto;
+    label {
+      margin: 0;
+    }
+    button, input, textarea {
+      margin: auto;
     }
     input {
-      width: 90%;
+      width: 100%;
       height: 30px;
       background: white;
     }
@@ -78,20 +84,17 @@ const StyledForm = styled.div`
       padding: 2px;
       font-size: 1em;
       font-weight: normal;
+      margin-bottom: 10px;
     }
     textarea{
       height: 200px;
-      width: 90%;
+      width: 100%;
     }
     button {
       &:hover{
         color: white;
         background: black;
       }
-    }
-    label {
-      font-size: 1.5em;
-      text-decoration: underline;
     }
   }
 `;

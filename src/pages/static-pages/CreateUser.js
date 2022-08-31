@@ -145,9 +145,6 @@ const StyledRegister = styled.div`
 		width: 90%;
 		flex-direction: column;
 		align-items: center;
-		@media (max-width: 1150px){
-			font-size: 1.2em;
-		}
 		label {
 			font-weight: bold;
 			@media (max-width: 1150px){

@@ -41,6 +41,7 @@ const StyledContact = styled.div`
         h2 {
             font-size: 1.2em;
             color: #3a3a3a;
+            text-align: center;
         }
     }
 `;

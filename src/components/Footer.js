@@ -1,5 +1,6 @@
 // styled
 import styled from 'styled-components';
+import * as pallette from '../Styled/ThemeVariables.js';
 
 //router
 import { Link } from 'react-router-dom';
@@ -80,9 +81,10 @@ const StyledFooter = styled.footer`
             display: flex;
             justify-content: center;
             width: 100%;
-            font-size: 14px;
-            color: white;
+            font-size: 1em;
+            color: ${pallette.helperGrey};
             &:hover {
+                color: #fff;
                 text-decoration: underline;
             }
         }

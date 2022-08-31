@@ -68,7 +68,7 @@ const StyledSnip = styled.div`
     height: 30vh;
     display: flex;
     justify-content: space-between;
-    margin: 1em auto 5em auto;
+    margin: 2em auto;
     align-items: center;
     width: 100%;
     max-width: 875px;

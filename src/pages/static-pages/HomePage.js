@@ -70,9 +70,9 @@ export default function HomePage () {
 const StyledHomePage = styled.div`
     height: 100%;
     width: 100%;
-    margin: 1em auto;
+    margin: 0 auto;
     max-width: 875px;
-     #showmore {
+    #showmore {
         height: 35px;
         width: 200px;
         font-size: 16px;
@@ -83,7 +83,7 @@ const StyledHomePage = styled.div`
         display: flex;
         width: 100%;
         height: 100%;
-        margin: 3em auto;
+        margin: 0 auto;
         .blog-wrapper {
             display: flex;
             flex-direction: column;
