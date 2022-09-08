@@ -39,11 +39,11 @@ export default function BlogArticle() {
                 setArticle(response.data);
                 setLoading(false);
                 document.title = `${response.data.postTitle}`;
-                document.querySelector('meta[property="og:description"]').setAttribute("content", `${response.data.content.slice(0 , 100)}..`);
-                document.querySelector('meta[property="og:image"]').setAttribute("content", `${response.data.thumbnail}`);
+                document.querySelector('meta[meta="og:description"]').setAttribute("content", `${response.data.content.slice(0, 100)}..`);
+                document.querySelector('meta[meta="og:image"]').setAttribute("content", `${response.data.thumbnail}`);
                 if(response){
                     const [ year, month, day ] = response.data.postDate.split('-');
-                    setSplitDate(`${month}-${day}-${year}`);
+                    setSplitDate(`${month} - ${day} - ${year}`);
                     axios.get(`${process.env.REACT_APP_BASE_URL}/${process.env.REACT_APP_GET_CREATOR_URL}/${response.data.authorUsername}`)
                     .then(function(response){
                         setCreator(response.data[0]);
