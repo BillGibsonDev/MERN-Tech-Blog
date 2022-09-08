@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { marked } from 'marked';
 
-import { Helmet } from 'react-helmet';
-
 // styled
 import styled from 'styled-components';
 import * as pallette from '../../../Styled/ThemeVariables.js';
@@ -58,10 +56,6 @@ export default function BlogArticle() {
     
     return (
         <StyledArticle>
-            <Helmet>
-                <title>{article.title}</title>
-                <meta name="description" content={`${article.content}`} />
-            </Helmet>
             { 
                 isLoading 
                 ? <Loader />
