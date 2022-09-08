@@ -61,8 +61,11 @@ export default function BlogArticle() {
     return (
         <StyledArticle>
             <Helmet>
-                <title>{article.title}</title>
+                <title>{article.postTitle}</title>
                 <meta name="description" content={shortDesc} />
+                <meta property="og:title" content={article.postTitle} />
+                <meta property="og:description" content={shortDesc} />
+                <meta property="og:image" content={article.thumbnail} />
             </Helmet>
             { 
                 isLoading 
