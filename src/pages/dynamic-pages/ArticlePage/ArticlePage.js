@@ -31,6 +31,7 @@ export default function BlogArticle() {
     const [ article, setArticle ] = useState([]);
     const [ isLoading, setLoading ] = useState(true);
     const [ splitDate, setSplitDate ] = useState('');
+    const [ shortDesc, setShortDesc ] = useState('');
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -38,8 +39,9 @@ export default function BlogArticle() {
             axios.get(`${process.env.REACT_APP_BASE_URL}/${process.env.REACT_APP_GET_POST_URL}/${postId}`)
             .then(function(response){
                 setArticle(response.data);
+                setShortDesc(response.data.content.slice(0, 100))
                 setLoading(false);
-                document.querySelector('meta[meta="og:image"]').setAttribute("content", `${response.data.thumbnail}`);
+                //document.querySelector('meta[meta="og:image"]').setAttribute("content", `${response.data.thumbnail}`);
                 if(response){
                     const [ year, month, day ] = response.data.postDate.split('-');
                     setSplitDate(`${month} - ${day} - ${year}`);
@@ -60,7 +62,7 @@ export default function BlogArticle() {
         <StyledArticle>
             <Helmet>
                 <title>{article.title}</title>
-                <meta name="description" content={article.content.slice(0,100)} />
+                <meta name="description" content={shortDesc} />
             </Helmet>
             { 
                 isLoading 
