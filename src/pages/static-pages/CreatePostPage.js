@@ -158,7 +158,6 @@ const StyledCreatePage = styled.div`
     .form-wrapper {
         display: flex;
         flex-direction: column;
-        background: lightgray;
         width: 100%;
         align-items: center;
         border-radius: 12px;

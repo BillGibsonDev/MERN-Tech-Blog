@@ -13,8 +13,8 @@ const GlobalStyles = createGlobalStyle`
         scroll-behavior: smooth;
         width: 90%;
         background: ${pallette.accentColor};
-        font-family: 'Oswald', sans-serif;
-        letter-spacing: 1px;
+        font-family: 'Poppins', sans-serif;
+        letter-spacing: .5px;
         line-height: 1.5;
         @media (max-width: 1220px){
             width: 90%
@@ -31,7 +31,7 @@ const GlobalStyles = createGlobalStyle`
     }
     textarea, input {
         padding: 4px;
-        font-family: 'Oswald', sans-serif;
+        font-family: 'Poppins', sans-serif;
     }
     input {
         height: 30px;

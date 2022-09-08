@@ -115,7 +115,7 @@ const StyledArticle = styled.div`
             p, li {
                 font-size: 1rem;
                 margin-bottom: 1.5em;
-                letter-spacing: 1px;
+                letter-spacing: .5px;
                 line-height: 1.7;
                 color: #fff;
             }

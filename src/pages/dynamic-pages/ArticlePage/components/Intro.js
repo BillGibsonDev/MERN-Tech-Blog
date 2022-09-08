@@ -108,7 +108,6 @@ const StyledIntro = styled.section`
         margin: 10px 0 10px 0;
         .author-container {
             display: flex;
-            width: 110px;
             justify-content: space-between;
             align-items: center;
             img {
@@ -119,6 +118,7 @@ const StyledIntro = styled.section`
             }
             a {
                 font-size: 16px;
+                margin-left: 6px;
                 color: ${pallette.helperGrey};
                 &:hover {
                     text-decoration: underline;
