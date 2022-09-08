@@ -60,7 +60,7 @@ export default function BlogArticle() {
         <StyledArticle>
             <Helmet>
                 <title>{article.title}</title>
-                <meta name="description" content={`${article.content.slice(0, 100)}`} />
+                <meta name="description" content={`${article.content}`} />
             </Helmet>
             { 
                 isLoading 
