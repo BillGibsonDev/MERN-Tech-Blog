@@ -24,6 +24,7 @@ export default function HomePage () {
         window.scrollTo(0, 0);
         dispatch(getPosts());
         setNumber(articles.length);
+        document.title = `Tech Blog`;
     }, [dispatch, articles.length])
 
     const [ value, setValue ] = useState(10);

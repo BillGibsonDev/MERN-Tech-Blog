@@ -18,6 +18,7 @@ import { useSelector } from 'react-redux';
 
 // components
 import Intro from './components/Intro.js';
+import { Helmet } from 'react-helmet';
 
 export default function BlogArticle() {
 
@@ -38,8 +39,6 @@ export default function BlogArticle() {
             .then(function(response){
                 setArticle(response.data);
                 setLoading(false);
-                document.title = `${response.data.postTitle}`;
-                document.querySelector('meta[meta="og:description"]').setAttribute("content", `${response.data.content.slice(0, 100)}..`);
                 document.querySelector('meta[meta="og:image"]').setAttribute("content", `${response.data.thumbnail}`);
                 if(response){
                     const [ year, month, day ] = response.data.postDate.split('-');
@@ -59,6 +58,10 @@ export default function BlogArticle() {
     
     return (
         <StyledArticle>
+            <Helmet>
+                <title>{article.title}</title>
+                <meta name="description" content={article.content.slice(0,100)} />
+            </Helmet>
             { 
                 isLoading 
                 ? <Loader />
