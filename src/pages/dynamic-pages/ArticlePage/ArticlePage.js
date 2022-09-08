@@ -38,12 +38,12 @@ export default function BlogArticle() {
             .then(function(response){
                 setArticle(response.data);
                 setLoading(false);
+                document.title = `${response.data.postTitle}`;
+                document.querySelector('meta[name="og:description"]').setAttribute("content", `${response.data.content.slice(0 , 100)}..`);
+                document.querySelector('meta[name="og:image"]').setAttribute("content", `${response.data.thumbnail}`);
                 if(response){
                     const [ year, month, day ] = response.data.postDate.split('-');
                     setSplitDate(`${month}-${day}-${year}`);
-                    document.title = `${response.data.postTitle}`;
-                    document.querySelector('meta[name="og:description"]').setAttribute("content", `${response.data.content.slice(0 , 100)}..`);
-                    document.querySelector('meta[name="og:image"]').setAttribute("content", `${response.data.thumbnail}`);
                     axios.get(`${process.env.REACT_APP_BASE_URL}/${process.env.REACT_APP_GET_CREATOR_URL}/${response.data.authorUsername}`)
                     .then(function(response){
                         setCreator(response.data[0]);
