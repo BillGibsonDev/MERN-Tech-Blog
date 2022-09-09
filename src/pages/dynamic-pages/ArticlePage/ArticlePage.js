@@ -58,11 +58,15 @@ export default function BlogArticle() {
         getPosts();
     }, [ id, user, postId ]);
     
+    console.log(window)
+
     return (
         <StyledArticle>
             <Helmet>
                 <title>{article.postTitle}</title>
                 <meta name="description" content={shortDesc} />
+                <meta property="og:url" content="https://dainty-trifle-b85068.netlify.app/" />
+                <meta property="og:site_name" content="Tech Blog" />
                 <meta property="og:title" content={article.postTitle} />
                 <meta property="og:description" content={shortDesc} />
                 <meta property="og:image" content={article.thumbnail} />
