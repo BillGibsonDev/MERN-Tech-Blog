@@ -70,6 +70,9 @@ export default function BlogArticle() {
                 <meta property="og:title" content={article.postTitle} />
                 <meta property="og:description" content={shortDesc} />
                 <meta property="og:image" content={article.thumbnail} />
+                <meta property="twitter:image" content={article.thumbnail} />
+                <meta property="twitter:description" content={shortDesc} />
+                <meta property="twitter:title" content={article.postTitle} />
             </Helmet>
             { 
                 isLoading 
