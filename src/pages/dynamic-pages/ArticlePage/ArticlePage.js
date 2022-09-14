@@ -57,8 +57,6 @@ export default function BlogArticle() {
         }
         getPosts();
     }, [ id, user, postId ]);
-    
-    console.log(window)
 
     return (
         <StyledArticle>
