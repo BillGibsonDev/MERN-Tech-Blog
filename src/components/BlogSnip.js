@@ -49,7 +49,7 @@ export default function BlogSnip({
                     <img src={thumbnail} alt={thumbnail} />
                 </Link>
                 <div className="info-wrapper">
-                    <Link id="tag" to={`/articles/${tag}`}>#{tag}</Link>
+                    <Link id="tag" to={`/articles/${tag}`}>{tag}</Link>
                     <Link id="title" to={`/post/${linkTitle}/${id}`}>{title}</Link>
                     <div className="info-container">
                         <div className="author-header">

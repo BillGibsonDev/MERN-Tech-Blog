@@ -121,7 +121,6 @@ const StyledArticle = styled.div`
         display: flex;
         flex-direction: column;
         margin: auto;
-        border-radius: 20px;
         .content-container {
            ul {
                 list-style: square inside;
